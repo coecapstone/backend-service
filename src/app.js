@@ -1,9 +1,16 @@
-const http = require('http');
+const express = require('express');
 
-const server = http.createServer((req, res) => {
-    res.end('hello world!');
-});
+const app = express();
+const router = require('./router');
 
-server.listen(3000, '127.0.0.1', () => {
+app.get('/', (req, res) => {
+    res.json({
+        name:'helloo2'
+    })
+})
+
+app.use(router);
+
+app.listen(5000, '127.0.0.1', () => {
     console.log('server starts');
 });
