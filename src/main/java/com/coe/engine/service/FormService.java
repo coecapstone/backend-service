@@ -1,7 +1,7 @@
 package com.coe.engine.service;
 
-import com.coe.engine.model.Form;
-import com.coe.engine.model.FormData;
+import com.coe.engine.model.FormTypeDataModel;
+import com.coe.engine.model.TravelFormDataModel;
 import com.coe.engine.repository.FormRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -11,14 +11,14 @@ public class FormService {
     @Autowired
     private FormRepo formRepo;
 
-    public List<Form> getFormData() {
+    public List<FormTypeDataModel> getFormData() {
         return formRepo.getFormData();
     }
 
-    public String saveFormData(FormData form) {
+    public String saveFormData(TravelFormDataModel form) {
         String legalFirstName = form.getLegalFirstName();
         String legalLastName = form.getLegalLastName();
-        FormData formdata = new FormData(legalFirstName, legalLastName);
+        TravelFormDataModel formdata = new TravelFormDataModel(legalFirstName, legalLastName);
         formRepo.insertFormData(formdata);
         return "";
     }

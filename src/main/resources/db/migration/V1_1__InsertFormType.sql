@@ -1,4 +1,4 @@
-INSERT INTO form (`key`, `text`, `value`) VALUES
+INSERT INTO form_type (`key`, `text`, `value`) VALUES
 ('rei', 'Reimbursement', 'rei'),
 ('trarei', 'Traval Reimbursement', 'trarei'),
 ('pur', 'Purchase Request', 'pur'),

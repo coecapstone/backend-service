@@ -1,7 +1,7 @@
 package com.coe.engine.controller;
 
-import com.coe.engine.model.Form;
-import com.coe.engine.model.FormData;
+import com.coe.engine.model.FormTypeDataModel;
+import com.coe.engine.model.TravelFormDataModel;
 import com.coe.engine.service.FormService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class FormController {
     @RequestMapping(value = "/api/getAllForms", method = RequestMethod.GET, produces = APPLICATION_JSON)
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public final List<Form> getAllForm() {
+    public final List<FormTypeDataModel> getAllForm() {
         return formService.getFormData();
     }
 
@@ -42,7 +42,7 @@ public class FormController {
     @RequestMapping(value = "/api/saveFormData", method = RequestMethod.POST, produces = TEXT_PLAIN)
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public final String saveFormData(@RequestBody FormData form) throws Exception {
+    public final String saveFormData(@RequestBody TravelFormDataModel form) throws Exception {
         return formService.saveFormData(form);
     }
 }
