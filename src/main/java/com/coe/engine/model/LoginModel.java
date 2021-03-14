@@ -14,5 +14,6 @@ import lombok.Setter;
 @Data
 @Builder
 public class LoginModel {
-    private Integer subUnit_id;
+    private String unitName;
+    private String subUnitName;
 }

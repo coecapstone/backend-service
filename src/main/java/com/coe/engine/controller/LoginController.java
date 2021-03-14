@@ -34,7 +34,7 @@ public class LoginController {
     @RequestMapping(value = "/api/getUserRole/{netId}", method = RequestMethod.GET, produces = APPLICATION_JSON)
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public final List<Integer> getUserRole(
+    public final List<LoginModel> getUserRole(
             @ApiParam(name = "netId",
                 value = "NetID",
                 example = "johndoe",

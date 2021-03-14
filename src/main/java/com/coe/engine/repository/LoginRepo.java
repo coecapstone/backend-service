@@ -23,7 +23,7 @@ public class LoginRepo {
                 new FormMapper());
     }
 
-    public List<Integer> getUserRole(final String approver_netId) {
+    public List<LoginModel> getUserRole(final String approver_netId) {
         MapSqlParameterSource pathInfo = new MapSqlParameterSource();
         pathInfo.addValue("approver_netId", approver_netId, Types.VARCHAR);
         return namedParameterJdbcTemplate.query(GeneridHelper.loadSql("sql/getUserRoleViaNetId.sql"),

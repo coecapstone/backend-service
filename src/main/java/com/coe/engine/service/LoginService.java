@@ -11,7 +11,7 @@ public class LoginService {
     @Autowired
     private LoginRepo loginRepo;
 
-    public List<Integer> getUserRole(String netId) {
+    public List<LoginModel> getUserRole(String netId) {
         return loginRepo.getUserRole(netId);
     }
 }
