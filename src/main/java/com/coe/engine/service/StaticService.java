@@ -2,24 +2,32 @@ package com.coe.engine.service;
 
 import com.coe.engine.model.FormTypeDataModel;
 import com.coe.engine.model.TravelFormDataModel;
-import com.coe.engine.repository.FormRepo;
+import com.coe.engine.repository.StaticRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public class FormService {
+public class StaticService {
     @Autowired
-    private FormRepo formRepo;
+    private StaticRepo staticRepo;
 
-    public List<FormTypeDataModel> getFormData() {
-        return formRepo.getFormData();
+    public List<FormTypeDataModel> getFormTypeData() {
+        return staticRepo.getFormTypeData();
     }
 
     public String saveFormData(TravelFormDataModel form) {
         String legalFirstName = form.getLegalFirstName();
         String legalLastName = form.getLegalLastName();
         TravelFormDataModel formdata = new TravelFormDataModel(legalFirstName, legalLastName);
-        formRepo.insertFormData(formdata);
+        staticRepo.insertFormData(formdata);
         return "";
+    }
+
+    public List<String> getUnitsData() {
+        return staticRepo.getUnitsData();
+    }
+
+    public List<String> getSubunitsData(String unit) {
+        return staticRepo.getSubunitsData(unit);
     }
 }

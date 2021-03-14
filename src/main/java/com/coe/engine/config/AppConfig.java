@@ -1,8 +1,8 @@
 package com.coe.engine.config;
 
-import com.coe.engine.repository.FormRepo;
+import com.coe.engine.repository.StaticRepo;
 import com.coe.engine.repository.LoginRepo;
-import com.coe.engine.service.FormService;
+import com.coe.engine.service.StaticService;
 import com.coe.engine.service.LoginService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,8 +11,8 @@ import org.springframework.context.annotation.Configuration;
 public class AppConfig {
 
     @Bean
-    FormService formService() {
-        return new FormService();
+    StaticService formService() {
+        return new StaticService();
     }
 
     @Bean
@@ -21,8 +21,8 @@ public class AppConfig {
     }
 
     @Bean
-    public FormRepo formRepo() {
-        return new FormRepo();
+    public StaticRepo formRepo() {
+        return new StaticRepo();
     }
 
     @Bean

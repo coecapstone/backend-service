@@ -1,7 +1,6 @@
 package com.coe.engine.service;
 
 import com.coe.engine.model.LoginModel;
-import com.coe.engine.model.ProfileDataModel;
 import com.coe.engine.repository.LoginRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 

@@ -11,7 +11,6 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import java.sql.Types;
 import java.util.List;
-import java.util.Map;
 
 public class LoginRepo {
     @Autowired
@@ -19,7 +18,7 @@ public class LoginRepo {
 
     public List<FormTypeDataModel> getFormData() {
         MapSqlParameterSource pathtoInfo = new MapSqlParameterSource();
-        return namedParameterJdbcTemplate.query(GeneridHelper.loadSql("sql/getFormData.sql"), pathtoInfo,
+        return namedParameterJdbcTemplate.query(GeneridHelper.loadSql("sql/getFormTypeData.sql"), pathtoInfo,
                 new FormMapper());
     }
 
