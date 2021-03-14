@@ -11,11 +11,7 @@ public class LoginService {
     @Autowired
     private LoginRepo loginRepo;
 
-    public List<LoginModel> getUserRole(String netId) {
-        List<LoginModel> temp = loginRepo.getUserRole(netId);
-        System.out.println('b');
-        for(LoginModel t : temp)
-            System.out.println(t);
-        return temp;
+    public List<Integer> getUserRole(String netId) {
+        return loginRepo.getUserRole(netId);
     }
 }

@@ -34,15 +34,12 @@ public class LoginController {
     @RequestMapping(value = "/api/getUserRole/{netId}", method = RequestMethod.GET, produces = APPLICATION_JSON)
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public final List<LoginModel> getUserRole(
+    public final List<Integer> getUserRole(
             @ApiParam(name = "netId",
                 value = "NetID",
                 example = "johndoe",
                 required = true)
             @PathVariable("netId") String netId) {
-        List<LoginModel> temp = loginService.getUserRole(netId);
-        for(LoginModel t : temp)
-        System.out.println(t);
-        return temp;
+        return loginService.getUserRole(netId);
     }
 }

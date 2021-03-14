@@ -23,15 +23,11 @@ public class LoginRepo {
                 new FormMapper());
     }
 
-    public List<LoginModel> getUserRole(final String approver_netId) {
+    public List<Integer> getUserRole(final String approver_netId) {
         MapSqlParameterSource pathInfo = new MapSqlParameterSource();
         pathInfo.addValue("approver_netId", approver_netId, Types.VARCHAR);
-        List<LoginModel> temp = namedParameterJdbcTemplate.query(GeneridHelper.loadSql("sql/getUserRoleViaNetId.sql"),
+        return namedParameterJdbcTemplate.query(GeneridHelper.loadSql("sql/getUserRoleViaNetId.sql"),
                 pathInfo, new LoginMapper());
-        System.out.println('a');
-        for(LoginModel t : temp)
-            System.out.println(t);
-        return temp;
 //        Map<String, String> parameterMap = new HashMap<>();
 //        parameterMap.put("email", profileData.getEmail());
 //        parameterMap.put("imageUrl", profileData.getImageUrl());
