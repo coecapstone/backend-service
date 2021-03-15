@@ -1,2 +1,2 @@
 SELECT `key`, `text`, `value`
-FROM form_type;
+FROM form_all_types;
