@@ -1,5 +1,5 @@
-SELECT subunit_info.unit_name as unit_name, subunit_info.subunit_name as subunit_name
-FROM approvers_info
-LEFT JOIN subunit_info
-ON approvers_info.subunit_id = subunit_info.subunit_id
-where approvers_info.approver_netId=:approver_netId;
+SELECT static_subunit_info.unit_name as unit_name, static_subunit_info.subunit_name as subunit_name
+FROM static_approvers_info
+LEFT JOIN static_subunit_info
+ON static_approvers_info.subunit_id = static_subunit_info.subunit_id
+where static_approvers_info.approver_netId=:approver_netId;

@@ -1,2 +1,2 @@
 SELECT `unit_name`
-FROM unit_info;
+FROM static_unit_info;

@@ -10,8 +10,8 @@ CREATE TABLE `form_type` (
     PRIMARY KEY (`key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-DROP TABLE IF EXISTS `travel_request_form`;
-CREATE TABLE `travel_request_form` (
+DROP TABLE IF EXISTS `form_travel_request`;
+CREATE TABLE `form_travel_request` (
     `id` int(50) unsigned NOT NULL AUTO_INCREMENT,
     `legal_firstname` varchar(50),
     `legal_lastname` varchar(50),
