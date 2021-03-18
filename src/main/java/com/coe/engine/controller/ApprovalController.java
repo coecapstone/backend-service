@@ -54,4 +54,23 @@ public class ApprovalController {
         String subunitStr = subunitName.deleteCharAt(subunitName.length()-1).toString();
         return approvalService.getSubunitRequests(unit, subunitStr);
     }
+
+    @ApiOperation(
+            value = "Approve one request",
+            notes = "approve",
+            tags = "Approval",
+            httpMethod = "POST",
+            produces = APPLICATION_JSON
+    )
+    @RequestMapping(value = "/api/approvalRequest/{id}", method = RequestMethod.POST, produces = APPLICATION_JSON)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public final void approveRequest(
+            @ApiParam(name = "id",
+                    value = "id",
+                    example = "tra@yangx38@1616078966426",
+                    required = true)
+            @PathVariable("id") String id) {
+        approvalService.approveRequest(id);
+    }
 }
