@@ -20,6 +20,7 @@ public class FormService {
         String legalLastName = form.getLegalLastName();
         String departure = form.getDeparture();
         String destination = form.getDestination();
+        String reason = form.getReason();
 
         String unitName = form.getFormToSubmitUnit();
         String subunitName = form.getFormToSubmitSubunit();
@@ -31,7 +32,8 @@ public class FormService {
 //        System.out.println(unixTime);
 //        System.out.println(currentTime);
 
-        FormTravelRequestsModel travelRequest = new FormTravelRequestsModel(Id, type, legalFirstName, legalLastName, departure, destination);
+        FormTravelRequestsModel travelRequest = new FormTravelRequestsModel(Id, type, legalFirstName, legalLastName,
+                departure, destination, reason);
         formRepo.insertTravelRequestData(travelRequest);
 
         FormAllRequestDataModel requestData = new FormAllRequestDataModel(Id, creatorNetId, type, unitName, subunitName, unixTime);

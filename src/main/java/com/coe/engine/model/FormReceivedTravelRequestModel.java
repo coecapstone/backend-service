@@ -38,4 +38,7 @@ public class FormReceivedTravelRequestModel {
 
     @JsonProperty(value = "destination")
     private String destination;
+
+    @JsonProperty(value = "reason")
+    private String reason;
 }

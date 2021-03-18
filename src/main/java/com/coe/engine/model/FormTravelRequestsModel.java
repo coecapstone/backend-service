@@ -25,4 +25,6 @@ public class FormTravelRequestsModel {
     private String departure;
 
     private String destination;
+
+    private String reason;
 }
