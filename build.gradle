@@ -1,0 +1,102 @@
+buildscript {
+	ext {
+		springBootVersion='2.1.0.RELEASE'
+		springVersion ='5.1.2.RELEASE'
+		swaggerVersion='2.3.1'
+		mySqlVersion='8.0.16'
+		javaVersion='11'
+		janinoVersion = '3.0.6'
+	}
+	repositories {
+		mavenLocal()
+		maven { url "https://plugins.gradle.org/m2/" }
+		mavenCentral()
+		jcenter()
+	}
+
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath("io.spring.gradle:dependency-management-plugin:0.6.1.RELEASE")
+//		classpath 'org.flywaydb:flyway-gradle-plugin:3.1'
+	}
+}
+
+//plugins {
+//	id 'org.springframework.boot' version '2.4.3'
+//	id 'java'
+//	id 'pmd'
+//	id 'idea'
+//	id 'flyway'
+//}
+apply plugin: 'java'
+apply plugin: 'pmd'
+apply plugin: 'idea'                  // Enables download of sources and docs
+apply plugin: 'org.springframework.boot'
+//apply plugin: 'flyway'
+
+group = 'com.coe'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+pmd {
+	// https://docs.gradle.org/current/dsl/org.gradle.api.plugins.quality.Pmd.html
+	toolVersion = "5.2.1"
+	reportsDir = file("$project.buildDir/pmdReports")
+	consoleOutput = false
+	ignoreFailures  = true // Evaluation must pass
+	pmdTest.enabled = false
+	ruleSetFiles = files('ruleSets.xml')
+	ruleSets = []
+}
+
+//flyway {
+//	url = 'jdbc:h2:file:./target/foobar'
+//	user = 'sa'
+//	driver = 'com.mysql.jdbc.Driver'
+//}
+
+repositories {
+	mavenLocal()
+	maven { url "https://plugins.gradle.org/m2/" }
+	mavenCentral()
+	jcenter()
+}
+
+dependencies {
+	compile ("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+	compile "org.springframework:spring-context-support:${springVersion}"
+	compile "org.springframework.boot:spring-boot-starter-security:${springBootVersion}"
+	compile "io.springfox:springfox-swagger2:${swaggerVersion}"
+	compile "io.springfox:springfox-swagger-ui:${swaggerVersion}"
+	compile ("org.apache.commons:commons-lang3:3.4")
+	compile ("commons-io:commons-io:2.4")
+	compile ("com.netflix.hystrix:hystrix-core:1.5.2")
+	compile "org.flywaydb:flyway-core:5.2.4"
+	compile "org.codehaus.janino:janino:${janinoVersion}"
+	compile "mysql:mysql-connector-java:${mySqlVersion}"
+	compile "org.springframework.boot:spring-boot-starter-jdbc:${springBootVersion}"
+	compile "org.projectlombok:lombok:1.18.4"
+
+	testCompile ("org.springframework.boot:spring-boot-starter-test:${springBootVersion}") {
+		exclude group: "com.vaadin.external.google", module:"android-json"
+	}
+	testCompileOnly "org.projectlombok:lombok:1.18.4"
+	annotationProcessor "org.projectlombok:lombok:1.18.4"
+	testAnnotationProcessor "org.projectlombok:lombok:1.18.4"
+}
+
+test {
+	useJUnitPlatform()
+}
+
+processResources {
+	filesMatching('application.properties') {
+		expand project.properties
+	}
+}
