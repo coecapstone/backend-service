@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -57,7 +58,7 @@ public class ApprovalController {
 
     @ApiOperation(
             value = "Approve one request",
-            notes = "approve",
+            notes = "approve one request",
             tags = "Approval",
             httpMethod = "POST",
             produces = APPLICATION_JSON
@@ -72,5 +73,25 @@ public class ApprovalController {
                     required = true)
             @PathVariable("id") String id) {
         approvalService.approveRequest(id);
+    }
+
+    @ApiOperation(
+            value = "Decline one request",
+            notes = "decline one request",
+            tags = "Approval",
+            httpMethod = "POST",
+            produces = APPLICATION_JSON
+    )
+    @RequestMapping(value = "/api/sendDeclineMessage/{id}", method = RequestMethod.POST, produces = APPLICATION_JSON)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public final void declineRequest(
+            @ApiParam(name = "id",
+                    value = "id",
+                    example = "tra@yangx38@1616078966426",
+                    required = true)
+            @PathVariable("id") String id,
+            @RequestBody String reason) {
+        approvalService.declineRequest(id, reason);
     }
 }

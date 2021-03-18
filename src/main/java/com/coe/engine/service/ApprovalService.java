@@ -55,4 +55,8 @@ public class ApprovalService {
     public void approveRequest(String id) {
         approvalRepo.approveRequest(id);
     }
+
+    public void declineRequest(String id, String reason) {
+        approvalRepo.declineRequest(id, reason);
+    }
 }

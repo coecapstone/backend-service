@@ -28,6 +28,13 @@ public class ApprovalRepo {
     public void approveRequest(final String id) {
         Map<String, Object> parameterMap = new HashMap<>();
         parameterMap.put("id", id);
-        namedParameterJdbcTemplate.update(GeneridHelper.loadSql("sql/approveRequest.sql"), parameterMap);
+        namedParameterJdbcTemplate.update(GeneridHelper.loadSql("sql/updateToApproveRequest.sql"), parameterMap);
+    }
+
+    public void declineRequest(final String id, final String reason) {
+        Map<String, String> parameterMap = new HashMap<>();
+        parameterMap.put("id", id);
+        parameterMap.put("declined_reason", reason);
+        namedParameterJdbcTemplate.update(GeneridHelper.loadSql("sql/updateToDeclineRequest.sql"), parameterMap);
     }
 }
