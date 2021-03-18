@@ -1,7 +1,6 @@
 package com.coe.engine.service;
 
 import com.coe.engine.model.FormTypeDataModel;
-import com.coe.engine.model.TravelFormDataModel;
 import com.coe.engine.repository.StaticRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,14 +12,6 @@ public class StaticService {
 
     public List<FormTypeDataModel> getFormTypeData() {
         return staticRepo.getFormTypeData();
-    }
-
-    public String saveFormData(TravelFormDataModel form) {
-        String legalFirstName = form.getLegalFirstName();
-        String legalLastName = form.getLegalLastName();
-        TravelFormDataModel formdata = new TravelFormDataModel(legalFirstName, legalLastName);
-        staticRepo.insertFormData(formdata);
-        return "";
     }
 
     public List<String> getUnitsData() {

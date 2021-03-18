@@ -10,12 +10,36 @@ CREATE TABLE `form_all_types` (
     PRIMARY KEY (`key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+DROP TABLE IF EXISTS `form_all_requests`;
+CREATE TABLE `form_all_requests` (
+    `id` varchar(60),
+    `form_creator` varchar(50),
+    `form_type` varchar(50),
+    `unit_name` varchar(50),
+    `subunit_name` varchar(50),
+    `created_time_UTC` datetime(3),
+    `is_approved` int(1) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 DROP TABLE IF EXISTS `form_travel_requests`;
 CREATE TABLE `form_travel_requests` (
-    `id` int(50) unsigned NOT NULL AUTO_INCREMENT,
+    `id` varchar(60),
+    `form_type` varchar(10),
     `legal_firstname` varchar(50),
     `legal_lastname` varchar(50),
-    `is_approved` int(1) NOT NULL,
+    `departure` varchar(30),
+    `destination` varchar(30),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+DROP TABLE IF EXISTS `form_purchase_requests`;
+CREATE TABLE `form_purchase_requests` (
+    `id` varchar(50),
+    `form_type` varchar(10),
+    `full_name` varchar(50),
+    `address_line_1` varchar(100),
+    `address_line_2` varchar(100),
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

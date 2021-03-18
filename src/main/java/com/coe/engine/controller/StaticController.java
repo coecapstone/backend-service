@@ -1,8 +1,6 @@
 package com.coe.engine.controller;
 
 import com.coe.engine.model.FormTypeDataModel;
-import com.coe.engine.model.LoginModel;
-import com.coe.engine.model.TravelFormDataModel;
 import com.coe.engine.service.StaticService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -15,7 +13,6 @@ import java.util.List;
 @RestController
 public class StaticController {
     private static final String APPLICATION_JSON = "application/json";
-    private static final String TEXT_PLAIN = "text/plain";
 
     @Autowired
     private StaticService staticService;
@@ -23,7 +20,7 @@ public class StaticController {
     @ApiOperation(
             value = "Get all forms info",
             notes = "6 forms total",
-            tags = "Form",
+            tags = "Static",
             httpMethod = "GET",
             produces = APPLICATION_JSON
     )
@@ -35,23 +32,9 @@ public class StaticController {
     }
 
     @ApiOperation(
-            value = "Submit Form info",
-            notes = "record submit form info",
-            tags = "Form",
-            httpMethod = "POST",
-            produces = TEXT_PLAIN
-    )
-    @RequestMapping(value = "/api/saveFormData", method = RequestMethod.POST, produces = TEXT_PLAIN)
-    @ResponseStatus(HttpStatus.OK)
-    @ResponseBody
-    public final String saveFormData(@RequestBody TravelFormDataModel form) throws Exception {
-        return staticService.saveFormData(form);
-    }
-
-    @ApiOperation(
             value = "Get all unit info",
             notes = "Get all the units",
-            tags = "Unit and Subunit",
+            tags = "Static",
             httpMethod = "GET",
             produces = APPLICATION_JSON
     )
@@ -65,7 +48,7 @@ public class StaticController {
     @ApiOperation(
             value = "Get subunit list given unit",
             notes = "Get all the subunits",
-            tags = "Unit and Subunit",
+            tags = "Static",
             httpMethod = "GET",
             produces = APPLICATION_JSON
     )

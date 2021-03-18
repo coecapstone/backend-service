@@ -1,6 +1,5 @@
 package com.coe.engine.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,11 +13,16 @@ import lombok.Setter;
 @NoArgsConstructor
 @Data
 @Builder
-public class TravelFormDataModel {
-    @JsonProperty(value = "legal_firstname")
+public class FormTravelRequestsModel {
+    private String Id;
+
+    private String formType;
+
     private String legalFirstName;
 
-    @JsonProperty(value = "legal_lastname")
     private String legalLastName;
 
+    private String departure;
+
+    private String destination;
 }
