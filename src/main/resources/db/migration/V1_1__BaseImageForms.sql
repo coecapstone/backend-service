@@ -36,7 +36,7 @@ CREATE TABLE `form_travel_requests` (
 
 DROP TABLE IF EXISTS `form_purchase_requests`;
 CREATE TABLE `form_purchase_requests` (
-    `id` varchar(50),
+    `id` varchar(60),
     `form_type` varchar(10),
     `full_name` varchar(50),
     `address_line_1` varchar(100),

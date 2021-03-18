@@ -1,8 +1,10 @@
 package com.coe.engine.config;
 
+import com.coe.engine.repository.ApprovalRepo;
 import com.coe.engine.repository.FormRepo;
 import com.coe.engine.repository.StaticRepo;
 import com.coe.engine.repository.LoginRepo;
+import com.coe.engine.service.ApprovalService;
 import com.coe.engine.service.FormService;
 import com.coe.engine.service.StaticService;
 import com.coe.engine.service.LoginService;
@@ -14,6 +16,11 @@ public class AppConfig {
     @Bean
     FormService formService() {
         return new FormService();
+    }
+
+    @Bean
+    ApprovalService approvalService() {
+        return new ApprovalService();
     }
 
     @Bean
@@ -39,5 +46,10 @@ public class AppConfig {
     @Bean
     public FormRepo formRepo() {
         return new FormRepo();
+    }
+
+    @Bean
+    public ApprovalRepo approvalRepo() {
+        return new ApprovalRepo();
     }
 }
