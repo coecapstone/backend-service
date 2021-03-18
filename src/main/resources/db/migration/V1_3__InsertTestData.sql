@@ -13,6 +13,6 @@ INSERT INTO static_approvers_info (`approver_netId`, `subunit_id`) VALUES
 ('sree', 1),
 ('baosen', 1),
 ('baosen', 2),
-('yangx38', 1),
-('yangx38', 3),
+('xiyueyao', 1),
+('xiyueyao', 3),
 ('dom', 4);
