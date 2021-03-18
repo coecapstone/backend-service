@@ -21,5 +21,6 @@ public class FormAllRequestDataModel {
     private String formType;
     private String unitName;
     private String subunitName;
-    private long createdTime;
+    private Timestamp createdTime;
+    private String approvalStatus;
 }

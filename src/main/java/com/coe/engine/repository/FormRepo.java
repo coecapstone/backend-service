@@ -1,13 +1,11 @@
 package com.coe.engine.repository;
 
 import com.coe.engine.model.FormAllRequestDataModel;
-import com.coe.engine.model.FormReceivedTravelRequestModel;
 import com.coe.engine.model.FormTravelRequestsModel;
 import com.coe.engine.util.GeneridHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
-import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,8 +33,14 @@ public class FormRepo {
         parameterMap.put("form_type", requestData.getFormType());
         parameterMap.put("unit_name", requestData.getUnitName());
         parameterMap.put("subunit_name", requestData.getSubunitName());
-        long unixTime = requestData.getCreatedTime();
-        parameterMap.put("created_time_UTC", new Timestamp(unixTime));
+        parameterMap.put("created_time_UTC", requestData.getCreatedTime());
         namedParameterJdbcTemplate.update(GeneridHelper.loadSql("sql/insertAllRequestData.sql"), parameterMap);
     }
+
+//    public List<FormAllRequestTableModel> getUserRequests(final String netId) {
+//        MapSqlParameterSource pathInfo = new MapSqlParameterSource();
+//        pathInfo.addValue("netId", netId, Types.VARCHAR);
+//        return namedParameterJdbcTemplate.query(GeneridHelper.loadSql("sql/getUserRequestsViaNetId.sql"),
+//                pathInfo, new AllRequestsMapper());
+//    }
 }

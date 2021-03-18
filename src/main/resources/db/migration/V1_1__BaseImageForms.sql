@@ -18,7 +18,7 @@ CREATE TABLE `form_all_requests` (
     `unit_name` varchar(50),
     `subunit_name` varchar(50),
     `created_time_UTC` datetime(3),
-    `is_approved` int(1) NOT NULL,
+    `approval_status` varchar(30) NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
