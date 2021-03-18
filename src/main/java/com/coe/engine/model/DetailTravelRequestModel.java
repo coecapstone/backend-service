@@ -26,4 +26,5 @@ public class DetailTravelRequestModel {
     private String subunitName;
     private Timestamp createdTimeUTC;
     private String approvalStatus;
+    private String declinedReason;
 }

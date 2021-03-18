@@ -89,7 +89,7 @@ public class FormService {
             String createdTimePST = getCreatedTimePST(detail.getCreatedTimeUTC());
             details.add(new TableTravelRequestDetailModel(formTypeName, detail.getLegalFirstName(), detail.getLegalLastName(),
                     detail.getDeparture(), detail.getDestination(), detail.getReason(), detail.getUnitName(), detail.getSubunitName(),
-                    createdTimePST, detail.getApprovalStatus()));
+                    createdTimePST, detail.getApprovalStatus(), detail.getDeclinedReason()));
         }
         return details;
     }

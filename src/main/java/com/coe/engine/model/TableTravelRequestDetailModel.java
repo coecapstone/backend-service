@@ -26,4 +26,5 @@ public class TableTravelRequestDetailModel {
     private String subunitName;
     private String createdTime;
     private String approvalStatus;
+    private String declinedReason;
 }

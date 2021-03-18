@@ -12,6 +12,6 @@ public class DetailMapper implements RowMapper {
         return new DetailTravelRequestModel(rs.getString("form_type"), rs.getString("legal_firstname"),
                 rs.getString("legal_lastname"), rs.getString("departure"), rs.getString("destination"),
                 rs.getString("reason"), rs.getString("unit_name"), rs.getString("subunit_name"),
-                rs.getTimestamp("created_time_UTC"), rs.getString("approval_status"));
+                rs.getTimestamp("created_time_UTC"), rs.getString("approval_status"), rs.getString("declined_reason"));
     }
 }
