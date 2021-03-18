@@ -7,20 +7,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Timestamp;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
-public class FormAllRequestDataModel {
+public class TableAllRequestDataModel {
     private String Id;
-    private String formCreator;
     private String formType;
     private String unitName;
     private String subunitName;
-    private Timestamp createdTimeUTC;
+    private String createdTimePST;
     private String approvalStatus;
 }

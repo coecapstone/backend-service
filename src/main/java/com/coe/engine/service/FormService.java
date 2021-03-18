@@ -3,15 +3,22 @@ package com.coe.engine.service;
 import com.coe.engine.model.FormAllRequestDataModel;
 import com.coe.engine.model.FormReceivedTravelRequestModel;
 import com.coe.engine.model.FormTravelRequestsModel;
-import com.coe.engine.model.LoginModel;
+import com.coe.engine.model.TableAllRequestDataModel;
 import com.coe.engine.repository.FormRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.Timestamp;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class FormService {
+    private static final ZoneId z = ZoneId.of( "America/Los_Angeles" );
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy-HH:mm");
+
     @Autowired
     private FormRepo formRepo;
 
@@ -43,7 +50,26 @@ public class FormService {
         formRepo.insertAllRequestData(requestData);
     }
 
-//    public List<FormAllRequestDataModel> getUserRequests(String netId) {
-//        return formRepo.getUserRequests(netId);
-//    }
+    public List<TableAllRequestDataModel> getUserRequests(String netId) {
+        List<FormAllRequestDataModel> formAllRequestDataModels = formRepo.getUserRequests(netId);
+        List<TableAllRequestDataModel> tableAllRequestDataModels = new ArrayList<>();
+        for (FormAllRequestDataModel request : formAllRequestDataModels) {
+            String formType = request.getFormType();
+            String formTypeName = "";
+            if (formType.equals("rei")) formTypeName = "Reimbursement";
+            else if (formType.equals("trarei")) formTypeName = "Traval Reimbursement";
+            else if (formType.equals("pur")) formTypeName = "Purchase Request";
+            else if (formType.equals("in")) formTypeName = "Pay an Invoice";
+            else if (formType.equals("pro")) formTypeName = "Procard Receipt";
+            else formTypeName = "Travel Request";
+            Date createdTime = request.getCreatedTimeUTC();
+            ZonedDateTime zdt = createdTime.toInstant().atZone(z);
+            String createdTimePST = zdt.format(formatter);
+
+            TableAllRequestDataModel allUserRequests = new TableAllRequestDataModel(request.getId(),
+                    formTypeName , request.getUnitName(), request.getSubunitName(), createdTimePST, request.getApprovalStatus());
+            tableAllRequestDataModels.add(allUserRequests);
+        }
+        return tableAllRequestDataModels;
+    }
 }

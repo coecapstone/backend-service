@@ -1,6 +1,7 @@
 package com.coe.engine.controller;
 
 import com.coe.engine.model.FormReceivedTravelRequestModel;
+import com.coe.engine.model.TableAllRequestDataModel;
 import com.coe.engine.service.FormService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class FormController {
@@ -36,22 +39,22 @@ public class FormController {
         formService.saveTravelRequestFormData(form);
     }
 
-//    @ApiOperation(
-//            value = "Get All Users' Requests",
-//            notes = "get all of the User's requests",
-//            tags = "Form",
-//            httpMethod = "GET",
-//            produces = APPLICATION_JSON
-//    )
-//    @RequestMapping(value = "/api/getUserRequests/{netId}", method = RequestMethod.GET, produces = APPLICATION_JSON)
-//    @ResponseStatus(HttpStatus.OK)
-//    @ResponseBody
-//    public final void getUserRequests(
-//            @ApiParam(name = "netId",
-//                    value = "NetID",
-//                    example = "johndoe",
-//                    required = true)
-//            @PathVariable("netId") String netId) {
-//        formService.getUserRequests(netId);
-//    }
+    @ApiOperation(
+            value = "Get All Users' Requests",
+            notes = "get all of the User's requests",
+            tags = "Form",
+            httpMethod = "GET",
+            produces = APPLICATION_JSON
+    )
+    @RequestMapping(value = "/api/getUserRequests/{netId}", method = RequestMethod.GET, produces = APPLICATION_JSON)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public final List<TableAllRequestDataModel> getUserRequests(
+            @ApiParam(name = "netId",
+                    value = "NetID",
+                    example = "johndoe",
+                    required = true)
+            @PathVariable("netId") String netId) {
+         return formService.getUserRequests(netId);
+    }
 }
