@@ -55,6 +55,29 @@ public class FormController {
                     example = "johndoe",
                     required = true)
             @PathVariable("netId") String netId) {
-         return formService.getUserRequests(netId);
+        return formService.getUserRequests(netId);
+    }
+
+    @ApiOperation(
+            value = "Get One Request's Detail",
+            notes = "get one request's detail",
+            tags = "Form",
+            httpMethod = "GET",
+            produces = APPLICATION_JSON
+    )
+    @RequestMapping(value = "/api/getRequestDetail/{id}", method = RequestMethod.GET, produces = APPLICATION_JSON)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public final List<Object> getRequestDetail(
+            @ApiParam(name = "id",
+                    value = "id",
+                    example = "tra@yangx38@1616062760892",
+                    required = true)
+            @PathVariable("id") String id) {
+        String[] split = id.split("@");
+        if(split[0].equals("tra")) {
+            return formService.getTravelRequestDetail(id);
+        }
+        return null;
     }
 }

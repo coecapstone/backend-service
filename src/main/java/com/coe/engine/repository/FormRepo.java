@@ -1,6 +1,8 @@
 package com.coe.engine.repository;
 
 import com.coe.engine.mapper.AllRequestsMapper;
+import com.coe.engine.mapper.DetailMapper;
+import com.coe.engine.model.DetailTravelRequestModel;
 import com.coe.engine.model.FormAllRequestDataModel;
 import com.coe.engine.model.FormTravelRequestsModel;
 import com.coe.engine.util.GeneridHelper;
@@ -46,5 +48,13 @@ public class FormRepo {
         pathInfo.addValue("form_creator", netId, Types.VARCHAR);
         return namedParameterJdbcTemplate.query(GeneridHelper.loadSql("sql/getUserRequestsViaNetId.sql"),
                 pathInfo, new AllRequestsMapper());
+    }
+
+    public List<DetailTravelRequestModel> getTravelRequestDetail(final String requestId) {
+        MapSqlParameterSource pathInfo = new MapSqlParameterSource();
+        pathInfo.addValue("id", requestId, Types.VARCHAR);
+        System.out.println(requestId);
+        return namedParameterJdbcTemplate.query(GeneridHelper.loadSql("sql/getRequestDetail.sql"),
+                pathInfo, new DetailMapper());
     }
 }
