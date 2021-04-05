@@ -15,16 +15,12 @@ import lombok.Setter;
 @Builder
 public class FormTravelRequestsModel {
     private String Id;
-
     private String formType;
-
     private String legalFirstName;
-
     private String legalLastName;
-
     private String departure;
-
     private String destination;
-
+    private String departingDate;
+    private String returningDate;
     private String reason;
 }

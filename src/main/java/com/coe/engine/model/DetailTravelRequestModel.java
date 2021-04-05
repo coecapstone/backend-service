@@ -21,6 +21,8 @@ public class DetailTravelRequestModel {
     private String legalLastName;
     private String departure;
     private String destination;
+    private String departingDate;
+    private String returningDate;
     private String reason;
     private String unitName;
     private String subunitName;

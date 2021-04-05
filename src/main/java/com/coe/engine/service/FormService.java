@@ -47,6 +47,8 @@ public class FormService {
         String legalLastName = form.getLegalLastName();
         String departure = form.getDeparture();
         String destination = form.getDestination();
+        String departingDate = form.getDepartingDate();
+        String returningDate = form.getReturningDate();
         String reason = form.getReason();
 
         String unitName = form.getFormToSubmitUnit();
@@ -60,7 +62,7 @@ public class FormService {
 //        System.out.println(currentTime);
 
         FormTravelRequestsModel travelRequest = new FormTravelRequestsModel(Id, type, legalFirstName, legalLastName,
-                departure, destination, reason);
+                departure, destination, departingDate, returningDate, reason);
         formRepo.insertTravelRequestData(travelRequest);
 
         FormAllRequestDataModel requestData = new FormAllRequestDataModel(Id, creatorNetId, type, unitName, subunitName, new Timestamp(unixTime), "Pending Review");
@@ -88,7 +90,8 @@ public class FormService {
             String formTypeName = getFormName(detail.getFormType());
             String createdTimePST = getCreatedTimePST(detail.getCreatedTimeUTC());
             details.add(new TableTravelRequestDetailModel(formTypeName, detail.getLegalFirstName(), detail.getLegalLastName(),
-                    detail.getDeparture(), detail.getDestination(), detail.getReason(), detail.getUnitName(), detail.getSubunitName(),
+                    detail.getDeparture(), detail.getDestination(), detail.getDepartingDate(), detail.getReturningDate(),
+                    detail.getReason(), detail.getUnitName(), detail.getSubunitName(),
                     createdTimePST, detail.getApprovalStatus(), detail.getDeclinedReason()));
         }
         return details;
