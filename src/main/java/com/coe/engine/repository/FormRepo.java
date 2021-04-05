@@ -28,6 +28,8 @@ public class FormRepo {
         parameterMap.put("legal_lastname", travelRequest.getLegalLastName());
         parameterMap.put("departure", travelRequest.getDeparture());
         parameterMap.put("destination", travelRequest.getDestination());
+        parameterMap.put("departing_date", travelRequest.getDepartingDate());
+        parameterMap.put("returning_date", travelRequest.getReturningDate());
         parameterMap.put("reason", travelRequest.getReason());
         namedParameterJdbcTemplate.update(GeneridHelper.loadSql("sql/insertTravelRequestData.sql"), parameterMap);
     }
