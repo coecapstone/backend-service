@@ -43,7 +43,7 @@ public class ApprovalController {
             @PathVariable("unit") String unit,
             @ApiParam(name = "subunit",
                     value = "subunit",
-                    example = "Info theory",
+                    example = "Info-theory",
                     required = true)
             @PathVariable("subunit") String subunit) {
         String[] splitSubunit = subunit.split("-");

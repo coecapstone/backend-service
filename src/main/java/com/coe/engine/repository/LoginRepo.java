@@ -1,8 +1,8 @@
 package com.coe.engine.repository;
 
 import com.coe.engine.mapper.FormMapper;
-import com.coe.engine.mapper.LoginMapper;
-import com.coe.engine.model.FormTypeDataModel;
+import com.coe.engine.mapper.UnitSubunitMapper;
+import com.coe.engine.model.DropdownDataModel;
 import com.coe.engine.model.LoginModel;
 import com.coe.engine.util.GeneridHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ public class LoginRepo {
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public List<FormTypeDataModel> getFormData() {
+    public List<DropdownDataModel> getFormData() {
         MapSqlParameterSource pathtoInfo = new MapSqlParameterSource();
         return namedParameterJdbcTemplate.query(GeneridHelper.loadSql("sql/getFormTypeData.sql"), pathtoInfo,
                 new FormMapper());
@@ -26,7 +26,7 @@ public class LoginRepo {
         MapSqlParameterSource pathInfo = new MapSqlParameterSource();
         pathInfo.addValue("approver_netId", approver_netId, Types.VARCHAR);
         return namedParameterJdbcTemplate.query(GeneridHelper.loadSql("sql/getUserRoleViaNetId.sql"),
-                pathInfo, new LoginMapper());
+                pathInfo, new UnitSubunitMapper());
 //        Map<String, String> parameterMap = new HashMap<>();
 //        parameterMap.put("email", profileData.getEmail());
 //        parameterMap.put("imageUrl", profileData.getImageUrl());

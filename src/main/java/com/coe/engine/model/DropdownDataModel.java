@@ -13,7 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Data
 @Builder
-public class FormTypeDataModel {
+public class DropdownDataModel {
     private String key;
     private String text;
     private String value;

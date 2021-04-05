@@ -1,6 +1,6 @@
 package com.coe.engine.controller;
 
-import com.coe.engine.model.FormTypeDataModel;
+import com.coe.engine.model.DropdownDataModel;
 import com.coe.engine.service.StaticService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -27,7 +27,7 @@ public class StaticController {
     @RequestMapping(value = "/api/getAllForms", method = RequestMethod.GET, produces = APPLICATION_JSON)
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public final List<FormTypeDataModel> getAllForms() {
+    public final List<DropdownDataModel> getAllForms() {
         return staticService.getFormTypeData();
     }
 
@@ -62,5 +62,36 @@ public class StaticController {
                     required = true)
             @PathVariable("unit") String unit) {
         return staticService.getSubunitsData(unit);
+    }
+
+    @ApiOperation(
+            value = "Get subunit list given unit",
+            notes = "Get all the subunits",
+            tags = "Static",
+            httpMethod = "GET",
+            produces = APPLICATION_JSON
+    )
+    @RequestMapping(value = "/api/getBudgets/{unit}/{subunit}", method = RequestMethod.GET, produces = APPLICATION_JSON)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public final List<DropdownDataModel> getBudgetofSubunit(
+            @ApiParam(name = "unit",
+                    value = "unit",
+                    example = "ECE",
+                    required = true)
+            @PathVariable("unit") String unit,
+            @ApiParam(name = "subunit",
+                    value = "subunit",
+                    example = "Info-theory",
+                    required = true)
+            @PathVariable("subunit") String subunit) {
+        String[] splitSubunit = subunit.split("-");
+        StringBuilder subunitName = new StringBuilder();
+        for (String sub : splitSubunit) {
+            subunitName.append(sub);
+            subunitName.append(" ");
+        }
+        String subunitStr = subunitName.deleteCharAt(subunitName.length()-1).toString();
+        return staticService.getBudgetOfSubunit(unit, subunitStr);
     }
 }
