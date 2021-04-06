@@ -105,4 +105,8 @@ public class FormService {
         }
         return details;
     }
+
+    public List<BudgetNumberAmountModel> getTravelBudgetDetail(String requestId) {
+        return formRepo.getTravelBudgetDetail(requestId);
+    }
 }

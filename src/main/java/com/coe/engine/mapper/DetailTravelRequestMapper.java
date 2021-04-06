@@ -6,7 +6,7 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DetailMapper implements RowMapper {
+public class DetailTravelRequestMapper implements RowMapper {
     @Override
     public DetailTravelRequestModel mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new DetailTravelRequestModel(rs.getString("form_type"), rs.getString("legal_firstname"),

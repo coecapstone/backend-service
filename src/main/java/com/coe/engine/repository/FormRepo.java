@@ -1,7 +1,9 @@
 package com.coe.engine.repository;
 
 import com.coe.engine.mapper.AllRequestsMapper;
-import com.coe.engine.mapper.DetailMapper;
+import com.coe.engine.mapper.DetailBudgetMapper;
+import com.coe.engine.mapper.DetailTravelRequestMapper;
+import com.coe.engine.model.BudgetNumberAmountModel;
 import com.coe.engine.model.DetailTravelRequestModel;
 import com.coe.engine.model.FormAllRequestDataModel;
 import com.coe.engine.model.FormBudgetListModel;
@@ -66,6 +68,13 @@ public class FormRepo {
         pathInfo.addValue("id", requestId, Types.VARCHAR);
         System.out.println(requestId);
         return namedParameterJdbcTemplate.query(GeneridHelper.loadSql("sql/getRequestDetail.sql"),
-                pathInfo, new DetailMapper());
+                pathInfo, new DetailTravelRequestMapper());
+    }
+
+    public List<BudgetNumberAmountModel> getTravelBudgetDetail(final String requestId) {
+        MapSqlParameterSource pathInfo = new MapSqlParameterSource();
+        pathInfo.addValue("form_id", requestId, Types.VARCHAR);
+        return namedParameterJdbcTemplate.query(GeneridHelper.loadSql("sql/getBudgetDetail.sql"),
+                pathInfo, new DetailBudgetMapper());
     }
 }
