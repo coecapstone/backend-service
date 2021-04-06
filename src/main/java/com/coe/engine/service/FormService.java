@@ -52,8 +52,10 @@ public class FormService {
         String departingDate = form.getDepartingDate();
         String returningDate = form.getReturningDate();
         String reason = form.getReason();
-        BudgetNumberAmountModel budgetNumberAndAmount = form.getBudgetNumberAmountModel();
+        BudgetNumberAmountModel[] budgetNumberAndAmounts = form.getBudgetNumberAmountModel();
 
+        // FormBudgetListModel budgetList = new FormBudgetListModel(Id, budgetNumberAndAmount.getBudget_number(), budgetNumberAndAmount.getAmount());
+        // formRepo.insertBudgetListData(budgetList);
         String unitName = form.getFormToSubmitUnit();
         String subunitName = form.getFormToSubmitSubunit();
 
@@ -63,9 +65,10 @@ public class FormService {
 //        Date currentTime = new Timestamp(unixTime);
 //        System.out.println(unixTime);
 //        System.out.println(currentTime);
-
-        FormBudgetListModel budgetList = new FormBudgetListModel(Id, budgetNumberAndAmount.getBudget_number(), budgetNumberAndAmount.getAmount());
-        formRepo.insertBudgetListData(budgetList);
+        for (BudgetNumberAmountModel budgetNumber_amount : budgetNumberAndAmounts) {
+            FormBudgetListModel oneBudgetLine = new FormBudgetListModel(Id, budgetNumber_amount.getBudget_number(), budgetNumber_amount.getAmount());
+            formRepo.insertBudgetListData(oneBudgetLine);
+        }
 
         FormTravelRequestsModel travelRequest = new FormTravelRequestsModel(Id, type, legalFirstName, legalLastName,
                 departure, destination, departingDate, returningDate, reason);

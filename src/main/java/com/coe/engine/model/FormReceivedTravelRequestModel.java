@@ -49,5 +49,5 @@ public class FormReceivedTravelRequestModel {
     private String reason;
 
     @JsonProperty(value="budget_list_JS")
-    private BudgetNumberAmountModel budgetNumberAmountModel;
+    private BudgetNumberAmountModel[] budgetNumberAmountModel;
 }
