@@ -1,11 +1,7 @@
 package com.coe.engine.service;
 
-import com.coe.engine.model.DetailTravelRequestModel;
 import com.coe.engine.model.FormAllApprovalDataModel;
-import com.coe.engine.model.FormAllRequestDataModel;
 import com.coe.engine.model.TableAllApprovalDataModel;
-import com.coe.engine.model.TableAllRequestDataModel;
-import com.coe.engine.model.TableTravelRequestDetailModel;
 import com.coe.engine.repository.ApprovalRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 

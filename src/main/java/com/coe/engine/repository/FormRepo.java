@@ -1,9 +1,12 @@
 package com.coe.engine.repository;
 
 import com.coe.engine.mapper.AllRequestsMapper;
-import com.coe.engine.mapper.DetailMapper;
+import com.coe.engine.mapper.DetailBudgetMapper;
+import com.coe.engine.mapper.DetailTravelRequestMapper;
+import com.coe.engine.model.BudgetNumberAmountModel;
 import com.coe.engine.model.DetailTravelRequestModel;
 import com.coe.engine.model.FormAllRequestDataModel;
+import com.coe.engine.model.FormBudgetListModel;
 import com.coe.engine.model.FormTravelRequestsModel;
 import com.coe.engine.util.GeneridHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,14 @@ public class FormRepo {
 
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    public void insertBudgetListData(final FormBudgetListModel budgetList) {
+        Map<String, String> parameterMap = new HashMap<>();
+        parameterMap.put("form_id", budgetList.getId());
+        parameterMap.put("budget_number", budgetList.getBudget_number());
+        parameterMap.put("amount", budgetList.getAmount());
+        namedParameterJdbcTemplate.update(GeneridHelper.loadSql("sql/insertBudgetList.sql"), parameterMap);
+    }
 
     public void insertTravelRequestData(final FormTravelRequestsModel travelRequest) {
         Map<String, String> parameterMap = new HashMap<>();
@@ -57,6 +68,13 @@ public class FormRepo {
         pathInfo.addValue("id", requestId, Types.VARCHAR);
         System.out.println(requestId);
         return namedParameterJdbcTemplate.query(GeneridHelper.loadSql("sql/getRequestDetail.sql"),
-                pathInfo, new DetailMapper());
+                pathInfo, new DetailTravelRequestMapper());
+    }
+
+    public List<BudgetNumberAmountModel> getTravelBudgetDetail(final String requestId) {
+        MapSqlParameterSource pathInfo = new MapSqlParameterSource();
+        pathInfo.addValue("form_id", requestId, Types.VARCHAR);
+        return namedParameterJdbcTemplate.query(GeneridHelper.loadSql("sql/getBudgetDetail.sql"),
+                pathInfo, new DetailBudgetMapper());
     }
 }

@@ -1,5 +1,6 @@
 package com.coe.engine.controller;
 
+import com.coe.engine.model.BudgetNumberAmountModel;
 import com.coe.engine.model.FormReceivedTravelRequestModel;
 import com.coe.engine.model.TableAllRequestDataModel;
 import com.coe.engine.service.FormService;
@@ -77,6 +78,29 @@ public class FormController {
         String[] split = id.split("@");
         if(split[0].equals("tra")) {
             return formService.getTravelRequestDetail(id);
+        }
+        return null;
+    }
+
+    @ApiOperation(
+            value = "Get One Budget's Detail",
+            notes = "get one budget's detail",
+            tags = "Form",
+            httpMethod = "GET",
+            produces = APPLICATION_JSON
+    )
+    @RequestMapping(value = "/api/getBudgetDetail/{id}", method = RequestMethod.GET, produces = APPLICATION_JSON)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public final List<BudgetNumberAmountModel> getBudgetDetail(
+            @ApiParam(name = "id",
+                    value = "id",
+                    example = "tra@yangx38@1616062760892",
+                    required = true)
+            @PathVariable("id") String id) {
+        String[] split = id.split("@");
+        if(split[0].equals("tra")) {
+            return formService.getTravelBudgetDetail(id);
         }
         return null;
     }

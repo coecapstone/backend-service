@@ -1,7 +1,9 @@
 package com.coe.engine.service;
 
+import com.coe.engine.model.BudgetNumberAmountModel;
 import com.coe.engine.model.DetailTravelRequestModel;
 import com.coe.engine.model.FormAllRequestDataModel;
+import com.coe.engine.model.FormBudgetListModel;
 import com.coe.engine.model.FormReceivedTravelRequestModel;
 import com.coe.engine.model.FormTravelRequestsModel;
 import com.coe.engine.model.TableAllRequestDataModel;
@@ -50,7 +52,10 @@ public class FormService {
         String departingDate = form.getDepartingDate();
         String returningDate = form.getReturningDate();
         String reason = form.getReason();
+        BudgetNumberAmountModel[] budgetNumberAndAmounts = form.getBudgetNumberAmountModel();
 
+        // FormBudgetListModel budgetList = new FormBudgetListModel(Id, budgetNumberAndAmount.getBudget_number(), budgetNumberAndAmount.getAmount());
+        // formRepo.insertBudgetListData(budgetList);
         String unitName = form.getFormToSubmitUnit();
         String subunitName = form.getFormToSubmitSubunit();
 
@@ -60,6 +65,10 @@ public class FormService {
 //        Date currentTime = new Timestamp(unixTime);
 //        System.out.println(unixTime);
 //        System.out.println(currentTime);
+        for (BudgetNumberAmountModel budgetNumber_amount : budgetNumberAndAmounts) {
+            FormBudgetListModel oneBudgetLine = new FormBudgetListModel(Id, budgetNumber_amount.getBudget_number(), budgetNumber_amount.getAmount());
+            formRepo.insertBudgetListData(oneBudgetLine);
+        }
 
         FormTravelRequestsModel travelRequest = new FormTravelRequestsModel(Id, type, legalFirstName, legalLastName,
                 departure, destination, departingDate, returningDate, reason);
@@ -95,5 +104,9 @@ public class FormService {
                     createdTimePST, detail.getApprovalStatus(), detail.getDeclinedReason()));
         }
         return details;
+    }
+
+    public List<BudgetNumberAmountModel> getTravelBudgetDetail(String requestId) {
+        return formRepo.getTravelBudgetDetail(requestId);
     }
 }
