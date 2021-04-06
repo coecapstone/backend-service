@@ -1,7 +1,9 @@
 package com.coe.engine.service;
 
+import com.coe.engine.model.BudgetNumberAmountModel;
 import com.coe.engine.model.DetailTravelRequestModel;
 import com.coe.engine.model.FormAllRequestDataModel;
+import com.coe.engine.model.FormBudgetListModel;
 import com.coe.engine.model.FormReceivedTravelRequestModel;
 import com.coe.engine.model.FormTravelRequestsModel;
 import com.coe.engine.model.TableAllRequestDataModel;
@@ -50,6 +52,7 @@ public class FormService {
         String departingDate = form.getDepartingDate();
         String returningDate = form.getReturningDate();
         String reason = form.getReason();
+        BudgetNumberAmountModel budgetNumberAndAmount = form.getBudgetNumberAmountModel();
 
         String unitName = form.getFormToSubmitUnit();
         String subunitName = form.getFormToSubmitSubunit();
@@ -60,6 +63,9 @@ public class FormService {
 //        Date currentTime = new Timestamp(unixTime);
 //        System.out.println(unixTime);
 //        System.out.println(currentTime);
+
+        FormBudgetListModel budgetList = new FormBudgetListModel(Id, budgetNumberAndAmount.getBudget_number(), budgetNumberAndAmount.getAmount());
+        formRepo.insertBudgetListData(budgetList);
 
         FormTravelRequestsModel travelRequest = new FormTravelRequestsModel(Id, type, legalFirstName, legalLastName,
                 departure, destination, departingDate, returningDate, reason);

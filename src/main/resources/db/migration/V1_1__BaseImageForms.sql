@@ -37,6 +37,15 @@ CREATE TABLE `form_travel_requests` (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+DROP TABLE IF EXISTS `form_budget_list`;
+CREATE TABLE `form_budget_list` (
+    `id` int(100) unsigned NOT NULL AUTO_INCREMENT,
+    `form_id` varchar(60),
+    `budget_number` varchar(30),
+    `amount` varchar(30),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 DROP TABLE IF EXISTS `form_purchase_requests`;
 CREATE TABLE `form_purchase_requests` (
     `id` varchar(60),

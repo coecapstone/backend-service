@@ -4,6 +4,7 @@ import com.coe.engine.mapper.AllRequestsMapper;
 import com.coe.engine.mapper.DetailMapper;
 import com.coe.engine.model.DetailTravelRequestModel;
 import com.coe.engine.model.FormAllRequestDataModel;
+import com.coe.engine.model.FormBudgetListModel;
 import com.coe.engine.model.FormTravelRequestsModel;
 import com.coe.engine.util.GeneridHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,14 @@ public class FormRepo {
 
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    public void insertBudgetListData(final FormBudgetListModel budgetList) {
+        Map<String, String> parameterMap = new HashMap<>();
+        parameterMap.put("form_id", budgetList.getId());
+        parameterMap.put("budget_number", budgetList.getBudget_number());
+        parameterMap.put("amount", budgetList.getAmount());
+        namedParameterJdbcTemplate.update(GeneridHelper.loadSql("sql/insertBudgetList.sql"), parameterMap);
+    }
 
     public void insertTravelRequestData(final FormTravelRequestsModel travelRequest) {
         Map<String, String> parameterMap = new HashMap<>();
