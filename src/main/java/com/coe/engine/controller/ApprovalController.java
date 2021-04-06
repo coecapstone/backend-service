@@ -1,6 +1,5 @@
 package com.coe.engine.controller;
 
-import com.coe.engine.model.FormAllApprovalDataModel;
 import com.coe.engine.model.TableAllApprovalDataModel;
 import com.coe.engine.service.ApprovalService;
 import io.swagger.annotations.ApiOperation;

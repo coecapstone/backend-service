@@ -1,7 +1,6 @@
 package com.coe.engine.mapper;
 
 import com.coe.engine.model.BudgetNumberAmountModel;
-import com.coe.engine.model.DetailTravelRequestModel;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
