@@ -3,12 +3,14 @@ package com.coe.engine.repository;
 import com.coe.engine.mapper.AllRequestsMapper;
 import com.coe.engine.mapper.DetailBudgetMapper;
 import com.coe.engine.mapper.DetailTravelRequestMapper;
+import com.coe.engine.mapper.DetailWhetherPayFlightMapper;
 import com.coe.engine.model.BudgetNumberAmountModel;
 import com.coe.engine.model.DetailTravelRequestModel;
 import com.coe.engine.model.FormAllRequestDataModel;
 import com.coe.engine.model.FormBudgetListModel;
 import com.coe.engine.model.FormTravelRequestsModel;
 import com.coe.engine.model.FormWhetherPayFlightModel;
+import com.coe.engine.model.WhetherPayFlightFormDataModel;
 import com.coe.engine.util.GeneridHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -92,5 +94,12 @@ public class FormRepo {
         pathInfo.addValue("form_id", requestId, Types.VARCHAR);
         return namedParameterJdbcTemplate.query(GeneridHelper.loadSql("sql/getBudgetDetail.sql"),
                 pathInfo, new DetailBudgetMapper());
+    }
+
+    public List<WhetherPayFlightFormDataModel> getWhetherPayFlight(final String requestId) {
+        MapSqlParameterSource pathInfo = new MapSqlParameterSource();
+        pathInfo.addValue("form_id", requestId, Types.VARCHAR);
+        return namedParameterJdbcTemplate.query(GeneridHelper.loadSql("sql/getWhetherPayFlight.sql"),
+                pathInfo, new DetailWhetherPayFlightMapper());
     }
 }

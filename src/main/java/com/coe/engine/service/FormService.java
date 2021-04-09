@@ -7,7 +7,7 @@ import com.coe.engine.model.FormBudgetListModel;
 import com.coe.engine.model.FormReceivedTravelRequestModel;
 import com.coe.engine.model.FormTravelRequestsModel;
 import com.coe.engine.model.FormWhetherPayFlightModel;
-import com.coe.engine.model.PayFlightFormDataModel;
+import com.coe.engine.model.WhetherPayFlightFormDataModel;
 import com.coe.engine.model.TableAllRequestDataModel;
 import com.coe.engine.model.TableTravelRequestDetailModel;
 import com.coe.engine.repository.FormRepo;
@@ -74,16 +74,16 @@ public class FormService {
 
         String whetherPayFlight = form.getWhetherPayFlight();
         if (whetherPayFlight.equals("Yes")) {
-            PayFlightFormDataModel payFlightFormDataModel = form.getPayFlightFormDataModel();
-            String goingTo = payFlightFormDataModel.getGoingTo();
-            String whetherToPayAmount = payFlightFormDataModel.getWhetherToPayAmount();
-            String whetherToPayReturningDate = payFlightFormDataModel.getWhetherToPayReturningDate();
-            String whetherToPayDepartingDate = payFlightFormDataModel.getWhetherToPayDepartingDate();
-            String flightNumber = payFlightFormDataModel.getFlightNumber();
-            String flightFrom = payFlightFormDataModel.getFlightFrom();
-            String flightReference = payFlightFormDataModel.getFlightReference();
-            String birthday = payFlightFormDataModel.getBirthday();
-            String airline = payFlightFormDataModel.getAirline();
+            WhetherPayFlightFormDataModel whetherPayFlightFormDataModel = form.getWhetherPayFlightFormDataModel();
+            String goingTo = whetherPayFlightFormDataModel.getGoingTo();
+            String whetherToPayAmount = whetherPayFlightFormDataModel.getWhetherToPayAmount();
+            String whetherToPayReturningDate = whetherPayFlightFormDataModel.getWhetherToPayReturningDate();
+            String whetherToPayDepartingDate = whetherPayFlightFormDataModel.getWhetherToPayDepartingDate();
+            String flightNumber = whetherPayFlightFormDataModel.getFlightNumber();
+            String flightFrom = whetherPayFlightFormDataModel.getFlightFrom();
+            String flightReference = whetherPayFlightFormDataModel.getFlightReference();
+            String birthday = whetherPayFlightFormDataModel.getBirthday();
+            String airline = whetherPayFlightFormDataModel.getAirline();
             formRepo.insertWhetherToPayFlightData(new FormWhetherPayFlightModel(Id, goingTo, whetherToPayAmount, whetherToPayReturningDate, whetherToPayDepartingDate, flightNumber, flightFrom, flightReference, birthday, airline));
         }
 
@@ -125,5 +125,9 @@ public class FormService {
 
     public List<BudgetNumberAmountModel> getTravelBudgetDetail(String requestId) {
         return formRepo.getTravelBudgetDetail(requestId);
+    }
+
+    public List<WhetherPayFlightFormDataModel> getWhetherPayFlight(String requestId) {
+        return formRepo.getWhetherPayFlight(requestId);
     }
 }

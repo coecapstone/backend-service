@@ -55,5 +55,5 @@ public class FormReceivedTravelRequestModel {
     private String whetherPayFlight;
 
     @JsonProperty(value="whetherPayFlightFormData")
-    private PayFlightFormDataModel payFlightFormDataModel;
+    private WhetherPayFlightFormDataModel whetherPayFlightFormDataModel;
 }

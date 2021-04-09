@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class PayFlightFormDataModel {
+public class WhetherPayFlightFormDataModel {
     @JsonProperty(value="goingTo")
     private String goingTo;
 
