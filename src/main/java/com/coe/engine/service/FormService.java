@@ -6,6 +6,8 @@ import com.coe.engine.model.FormAllRequestDataModel;
 import com.coe.engine.model.FormBudgetListModel;
 import com.coe.engine.model.FormReceivedTravelRequestModel;
 import com.coe.engine.model.FormTravelRequestsModel;
+import com.coe.engine.model.FormWhetherPayFlightModel;
+import com.coe.engine.model.PayFlightFormDataModel;
 import com.coe.engine.model.TableAllRequestDataModel;
 import com.coe.engine.model.TableTravelRequestDetailModel;
 import com.coe.engine.repository.FormRepo;
@@ -68,6 +70,21 @@ public class FormService {
         for (BudgetNumberAmountModel budgetNumber_amount : budgetNumberAndAmounts) {
             FormBudgetListModel oneBudgetLine = new FormBudgetListModel(Id, budgetNumber_amount.getBudget_number(), budgetNumber_amount.getAmount());
             formRepo.insertBudgetListData(oneBudgetLine);
+        }
+
+        String whetherPayFlight = form.getWhetherPayFlight();
+        if (whetherPayFlight.equals("Yes")) {
+            PayFlightFormDataModel payFlightFormDataModel = form.getPayFlightFormDataModel();
+            String goingTo = payFlightFormDataModel.getGoingTo();
+            String whetherToPayAmount = payFlightFormDataModel.getWhetherToPayAmount();
+            String whetherToPayReturningDate = payFlightFormDataModel.getWhetherToPayReturningDate();
+            String whetherToPayDepartingDate = payFlightFormDataModel.getWhetherToPayDepartingDate();
+            String flightNumber = payFlightFormDataModel.getFlightNumber();
+            String flightFrom = payFlightFormDataModel.getFlightFrom();
+            String flightReference = payFlightFormDataModel.getFlightReference();
+            String birthday = payFlightFormDataModel.getBirthday();
+            String airline = payFlightFormDataModel.getAirline();
+            formRepo.insertWhetherToPayFlightData(new FormWhetherPayFlightModel(Id, goingTo, whetherToPayAmount, whetherToPayReturningDate, whetherToPayDepartingDate, flightNumber, flightFrom, flightReference, birthday, airline));
         }
 
         FormTravelRequestsModel travelRequest = new FormTravelRequestsModel(Id, type, legalFirstName, legalLastName,

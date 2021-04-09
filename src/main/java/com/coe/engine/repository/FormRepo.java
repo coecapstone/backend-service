@@ -8,6 +8,7 @@ import com.coe.engine.model.DetailTravelRequestModel;
 import com.coe.engine.model.FormAllRequestDataModel;
 import com.coe.engine.model.FormBudgetListModel;
 import com.coe.engine.model.FormTravelRequestsModel;
+import com.coe.engine.model.FormWhetherPayFlightModel;
 import com.coe.engine.util.GeneridHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -29,6 +30,21 @@ public class FormRepo {
         parameterMap.put("budget_number", budgetList.getBudget_number());
         parameterMap.put("amount", budgetList.getAmount());
         namedParameterJdbcTemplate.update(GeneridHelper.loadSql("sql/insertBudgetList.sql"), parameterMap);
+    }
+
+    public void insertWhetherToPayFlightData(final FormWhetherPayFlightModel whetherPayFlight) {
+        Map<String, String> parameterMap = new HashMap<>();
+        parameterMap.put("form_id", whetherPayFlight.getId());
+        parameterMap.put("going_to", whetherPayFlight.getGoingTo());
+        parameterMap.put("whether_to_pay_amount", whetherPayFlight.getWhetherToPayAmount());
+        parameterMap.put("whether_to_pay_returning_date", whetherPayFlight.getWhetherToPayReturningDate());
+        parameterMap.put("whether_to_pay_departing_date", whetherPayFlight.getWhetherToPayDepartingDate());
+        parameterMap.put("flight_number", whetherPayFlight.getFlightNumber());
+        parameterMap.put("flight_from", whetherPayFlight.getFlightFrom());
+        parameterMap.put("flight_reference", whetherPayFlight.getFlightReference());
+        parameterMap.put("birthday", whetherPayFlight.getBirthday());
+        parameterMap.put("airline", whetherPayFlight.getAirline());
+        namedParameterJdbcTemplate.update(GeneridHelper.loadSql("sql/insertWhetherPayFlight.sql"), parameterMap);
     }
 
     public void insertTravelRequestData(final FormTravelRequestsModel travelRequest) {
