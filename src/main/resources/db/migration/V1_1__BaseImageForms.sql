@@ -46,6 +46,22 @@ CREATE TABLE `form_budget_list` (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+DROP TABLE IF EXISTS `form_whether_to_pay_flight`;
+CREATE TABLE `form_whether_to_pay_flight` (
+    `id` int(100) unsigned NOT NULL AUTO_INCREMENT,
+    `form_id` varchar(60),
+    `going_to` varchar(30),
+    `whether_to_pay_amount` varchar(30),
+    `whether_to_pay_returning_date` varchar(20),
+    `whether_to_pay_departing_date` varchar(20),
+    `flight_number` varchar(10),
+    `flight_from` varchar(20),
+    `flight_reference` varchar(1000),
+    `birthday` varchar(10),
+    `airline` varchar(20),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 DROP TABLE IF EXISTS `form_purchase_requests`;
 CREATE TABLE `form_purchase_requests` (
     `id` varchar(60),

@@ -50,4 +50,10 @@ public class FormReceivedTravelRequestModel {
 
     @JsonProperty(value="budget_list_JS")
     private BudgetNumberAmountModel[] budgetNumberAmountModel;
+
+    @JsonProperty(value="whetherPayFlight")
+    private String whetherPayFlight;
+
+    @JsonProperty(value="whetherPayFlightFormData")
+    private WhetherPayFlightFormDataModel whetherPayFlightFormDataModel;
 }

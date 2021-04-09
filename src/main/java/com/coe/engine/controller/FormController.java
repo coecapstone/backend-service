@@ -3,6 +3,7 @@ package com.coe.engine.controller;
 import com.coe.engine.model.BudgetNumberAmountModel;
 import com.coe.engine.model.FormReceivedTravelRequestModel;
 import com.coe.engine.model.TableAllRequestDataModel;
+import com.coe.engine.model.WhetherPayFlightFormDataModel;
 import com.coe.engine.service.FormService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -101,6 +102,29 @@ public class FormController {
         String[] split = id.split("@");
         if(split[0].equals("tra")) {
             return formService.getTravelBudgetDetail(id);
+        }
+        return null;
+    }
+
+    @ApiOperation(
+            value = "Get One Whether To Pay Flight's Detail",
+            notes = "get one whether to pay flight's detail",
+            tags = "Form",
+            httpMethod = "GET",
+            produces = APPLICATION_JSON
+    )
+    @RequestMapping(value = "/api/getWhetherPayFlight/{id}", method = RequestMethod.GET, produces = APPLICATION_JSON)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public final List<WhetherPayFlightFormDataModel> getWhetherPayFlight(
+            @ApiParam(name = "id",
+                    value = "id",
+                    example = "tra@yangx38@1616062760892",
+                    required = true)
+            @PathVariable("id") String id) {
+        String[] split = id.split("@");
+        if(split[0].equals("tra")) {
+            return formService.getWhetherPayFlight(id);
         }
         return null;
     }

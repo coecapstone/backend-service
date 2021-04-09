@@ -3,11 +3,14 @@ package com.coe.engine.repository;
 import com.coe.engine.mapper.AllRequestsMapper;
 import com.coe.engine.mapper.DetailBudgetMapper;
 import com.coe.engine.mapper.DetailTravelRequestMapper;
+import com.coe.engine.mapper.DetailWhetherPayFlightMapper;
 import com.coe.engine.model.BudgetNumberAmountModel;
 import com.coe.engine.model.DetailTravelRequestModel;
 import com.coe.engine.model.FormAllRequestDataModel;
 import com.coe.engine.model.FormBudgetListModel;
 import com.coe.engine.model.FormTravelRequestsModel;
+import com.coe.engine.model.FormWhetherPayFlightModel;
+import com.coe.engine.model.WhetherPayFlightFormDataModel;
 import com.coe.engine.util.GeneridHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -29,6 +32,21 @@ public class FormRepo {
         parameterMap.put("budget_number", budgetList.getBudget_number());
         parameterMap.put("amount", budgetList.getAmount());
         namedParameterJdbcTemplate.update(GeneridHelper.loadSql("sql/insertBudgetList.sql"), parameterMap);
+    }
+
+    public void insertWhetherToPayFlightData(final FormWhetherPayFlightModel whetherPayFlight) {
+        Map<String, String> parameterMap = new HashMap<>();
+        parameterMap.put("form_id", whetherPayFlight.getId());
+        parameterMap.put("going_to", whetherPayFlight.getGoingTo());
+        parameterMap.put("whether_to_pay_amount", whetherPayFlight.getWhetherToPayAmount());
+        parameterMap.put("whether_to_pay_returning_date", whetherPayFlight.getWhetherToPayReturningDate());
+        parameterMap.put("whether_to_pay_departing_date", whetherPayFlight.getWhetherToPayDepartingDate());
+        parameterMap.put("flight_number", whetherPayFlight.getFlightNumber());
+        parameterMap.put("flight_from", whetherPayFlight.getFlightFrom());
+        parameterMap.put("flight_reference", whetherPayFlight.getFlightReference());
+        parameterMap.put("birthday", whetherPayFlight.getBirthday());
+        parameterMap.put("airline", whetherPayFlight.getAirline());
+        namedParameterJdbcTemplate.update(GeneridHelper.loadSql("sql/insertWhetherPayFlight.sql"), parameterMap);
     }
 
     public void insertTravelRequestData(final FormTravelRequestsModel travelRequest) {
@@ -76,5 +94,12 @@ public class FormRepo {
         pathInfo.addValue("form_id", requestId, Types.VARCHAR);
         return namedParameterJdbcTemplate.query(GeneridHelper.loadSql("sql/getBudgetDetail.sql"),
                 pathInfo, new DetailBudgetMapper());
+    }
+
+    public List<WhetherPayFlightFormDataModel> getWhetherPayFlight(final String requestId) {
+        MapSqlParameterSource pathInfo = new MapSqlParameterSource();
+        pathInfo.addValue("form_id", requestId, Types.VARCHAR);
+        return namedParameterJdbcTemplate.query(GeneridHelper.loadSql("sql/getWhetherPayFlight.sql"),
+                pathInfo, new DetailWhetherPayFlightMapper());
     }
 }

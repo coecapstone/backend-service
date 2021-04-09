@@ -6,6 +6,8 @@ import com.coe.engine.model.FormAllRequestDataModel;
 import com.coe.engine.model.FormBudgetListModel;
 import com.coe.engine.model.FormReceivedTravelRequestModel;
 import com.coe.engine.model.FormTravelRequestsModel;
+import com.coe.engine.model.FormWhetherPayFlightModel;
+import com.coe.engine.model.WhetherPayFlightFormDataModel;
 import com.coe.engine.model.TableAllRequestDataModel;
 import com.coe.engine.model.TableTravelRequestDetailModel;
 import com.coe.engine.repository.FormRepo;
@@ -70,6 +72,21 @@ public class FormService {
             formRepo.insertBudgetListData(oneBudgetLine);
         }
 
+        String whetherPayFlight = form.getWhetherPayFlight();
+        if (whetherPayFlight.equals("Yes")) {
+            WhetherPayFlightFormDataModel whetherPayFlightFormDataModel = form.getWhetherPayFlightFormDataModel();
+            String goingTo = whetherPayFlightFormDataModel.getGoingTo();
+            String whetherToPayAmount = whetherPayFlightFormDataModel.getWhetherToPayAmount();
+            String whetherToPayReturningDate = whetherPayFlightFormDataModel.getWhetherToPayReturningDate();
+            String whetherToPayDepartingDate = whetherPayFlightFormDataModel.getWhetherToPayDepartingDate();
+            String flightNumber = whetherPayFlightFormDataModel.getFlightNumber();
+            String flightFrom = whetherPayFlightFormDataModel.getFlightFrom();
+            String flightReference = whetherPayFlightFormDataModel.getFlightReference();
+            String birthday = whetherPayFlightFormDataModel.getBirthday();
+            String airline = whetherPayFlightFormDataModel.getAirline();
+            formRepo.insertWhetherToPayFlightData(new FormWhetherPayFlightModel(Id, goingTo, whetherToPayAmount, whetherToPayReturningDate, whetherToPayDepartingDate, flightNumber, flightFrom, flightReference, birthday, airline));
+        }
+
         FormTravelRequestsModel travelRequest = new FormTravelRequestsModel(Id, type, legalFirstName, legalLastName,
                 departure, destination, departingDate, returningDate, reason);
         formRepo.insertTravelRequestData(travelRequest);
@@ -108,5 +125,9 @@ public class FormService {
 
     public List<BudgetNumberAmountModel> getTravelBudgetDetail(String requestId) {
         return formRepo.getTravelBudgetDetail(requestId);
+    }
+
+    public List<WhetherPayFlightFormDataModel> getWhetherPayFlight(String requestId) {
+        return formRepo.getWhetherPayFlight(requestId);
     }
 }
