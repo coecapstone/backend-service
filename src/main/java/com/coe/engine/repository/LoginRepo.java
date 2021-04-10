@@ -1,9 +1,10 @@
 package com.coe.engine.repository;
 
 import com.coe.engine.mapper.FormMapper;
+import com.coe.engine.mapper.SystemAdministratorMapper;
 import com.coe.engine.mapper.UnitSubunitMapper;
 import com.coe.engine.model.DropdownDataModel;
-import com.coe.engine.model.LoginModel;
+import com.coe.engine.model.LoginUnitSubunitModel;
 import com.coe.engine.util.GeneridHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -22,18 +23,24 @@ public class LoginRepo {
                 new FormMapper());
     }
 
-    public List<LoginModel> getUserRole(final String approver_netId) {
+    public List<LoginUnitSubunitModel> getSubunitListAsApprover(final String netId) {
         MapSqlParameterSource pathInfo = new MapSqlParameterSource();
-        pathInfo.addValue("approver_netId", approver_netId, Types.VARCHAR);
-        return namedParameterJdbcTemplate.query(GeneridHelper.loadSql("sql/getUserRoleViaNetId.sql"),
+        pathInfo.addValue("approver_netId", netId, Types.VARCHAR);
+        return namedParameterJdbcTemplate.query(GeneridHelper.loadSql("sql/getSubunitListAsApprover.sql"),
                 pathInfo, new UnitSubunitMapper());
-//        Map<String, String> parameterMap = new HashMap<>();
-//        parameterMap.put("email", profileData.getEmail());
-//        parameterMap.put("imageUrl", profileData.getImageUrl());
-//        parameterMap.put("name", profileData.getName());
-//        System.out.println(profileData.getEmail());
-//        System.out.println(profileData.getImageUrl());
-//        System.out.println(profileData.getName());
-//        namedParameterJdbcTemplate.update(GeneridHelper.loadSql("sql/getUserRoleViaNetId.sql"), parameterMap);
+    }
+
+    public List<LoginUnitSubunitModel> getSubunitListAsFiscalStaff(final String netId) {
+        MapSqlParameterSource pathInfo = new MapSqlParameterSource();
+        pathInfo.addValue("fiscal_staff_netId", netId, Types.VARCHAR);
+        return namedParameterJdbcTemplate.query(GeneridHelper.loadSql("sql/getSubunitListAsFiscalStaff.sql"),
+                pathInfo, new UnitSubunitMapper());
+    }
+
+    public List<String> getWhetherUserIsSystemAdministrator(final String netId) {
+        MapSqlParameterSource pathInfo = new MapSqlParameterSource();
+        pathInfo.addValue("system_administrator_netId", netId, Types.VARCHAR);
+        return namedParameterJdbcTemplate.query(GeneridHelper.loadSql("sql/getWhetherUserIsSystemAdministrator.sql"),
+                pathInfo, new SystemAdministratorMapper());
     }
 }

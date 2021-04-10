@@ -1,6 +1,6 @@
 package com.coe.engine.controller;
 
-import com.coe.engine.model.LoginModel;
+import com.coe.engine.model.LoginUnitSubunitModel;
 import com.coe.engine.service.LoginService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -23,21 +23,59 @@ public class LoginController {
     private LoginService loginService;
 
     @ApiOperation(
-            value = "Endpoint to get user role",
-            notes = "check whether user is approver",
+            value = "Endpoint to get user's subunit list as approver",
+            notes = "get user's subunit list as approver",
             tags = "Login",
             httpMethod = "GET",
             produces = APPLICATION_JSON
     )
-    @RequestMapping(value = "/api/getUserRole/{netId}", method = RequestMethod.GET, produces = APPLICATION_JSON)
+    @RequestMapping(value = "/api/getSubunitListAsApprover/{netId}", method = RequestMethod.GET, produces = APPLICATION_JSON)
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public final List<LoginModel> getUserRole(
+    public final List<LoginUnitSubunitModel> getSubunitListAsApprover(
             @ApiParam(name = "netId",
                 value = "NetID",
                 example = "johndoe",
                 required = true)
             @PathVariable("netId") String netId) {
-        return loginService.getUserRole(netId);
+        return loginService.getSubunitListAsApprover(netId);
+    }
+
+    @ApiOperation(
+            value = "Endpoint to get user's subunit list as fiscal staff",
+            notes = "get user's subunit list as fiscal staff",
+            tags = "Login",
+            httpMethod = "GET",
+            produces = APPLICATION_JSON
+    )
+    @RequestMapping(value = "/api/getSubunitListAsFiscalStaff/{netId}", method = RequestMethod.GET, produces = APPLICATION_JSON)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public final List<LoginUnitSubunitModel> getSubunitListAsFiscalStaff(
+            @ApiParam(name = "netId",
+                    value = "NetID",
+                    example = "johndoe",
+                    required = true)
+            @PathVariable("netId") String netId) {
+        return loginService.getSubunitListAsFiscalStaff(netId);
+    }
+
+    @ApiOperation(
+            value = "Endpoint to check whether user is system administrator",
+            notes = "check whether user is system administrator",
+            tags = "Login",
+            httpMethod = "GET",
+            produces = APPLICATION_JSON
+    )
+    @RequestMapping(value = "/api/checkWhetherUserIsSystemAdministrator/{netId}", method = RequestMethod.GET, produces = APPLICATION_JSON)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public final Integer checkWhetherUserIsSystemAdministrator(
+            @ApiParam(name = "netId",
+                    value = "NetID",
+                    example = "johndoe",
+                    required = true)
+            @PathVariable("netId") String netId) {
+        return loginService.getWhetherUserIsSystemAdministrator(netId);
     }
 }

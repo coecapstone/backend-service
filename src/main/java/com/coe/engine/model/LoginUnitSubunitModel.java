@@ -13,7 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Data
 @Builder
-public class LoginModel {
+public class LoginUnitSubunitModel {
     private String unitName;
     private String subUnitName;
 }

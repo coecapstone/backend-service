@@ -1,0 +1,5 @@
+SELECT static_subunit_info.unit_name as unit_name, static_subunit_info.subunit_name as subunit_name
+FROM static_fiscal_staffs_info
+LEFT JOIN static_subunit_info
+ON static_fiscal_staffs_info.subunit_id = static_subunit_info.subunit_id
+where static_fiscal_staffs_info.fiscal_staff_netId=:fiscal_staff_netId;

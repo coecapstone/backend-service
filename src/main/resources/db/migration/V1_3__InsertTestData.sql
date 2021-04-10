@@ -19,6 +19,18 @@ INSERT INTO static_approvers_info (`approver_netId`, `subunit_id`) VALUES
 ('yangx38', 4),
 ('dom', 4);
 
+INSERT INTO static_fiscal_staffs_info (`fiscal_staff_netId`, `subunit_id`) VALUES
+('sree', 1),
+('baosen', 1),
+('baosen', 2),
+('yangx38', 1),
+('yangx38', 2),
+('yangx38', 3),
+('dom', 4);
+
+INSERT INTO static_system_administrators_info (`system_administrator_netId`) VALUES
+('yangx38');
+
 INSERT INTO static_budget_info (`subunit_id`, `budget_number`, `balance`) VALUES
 (1, '910-11', 100.50),
 (1, '910-22', 200.00),
