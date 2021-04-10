@@ -122,10 +122,6 @@ public class FormController {
                     example = "tra@yangx38@1616062760892",
                     required = true)
             @PathVariable("id") String id) {
-        String[] split = id.split("@");
-        if(split[0].equals("tra")) {
-            return formService.getWhetherPayFlight(id);
-        }
-        return null;
+        return formService.getWhetherPayFlight(id);
     }
 }

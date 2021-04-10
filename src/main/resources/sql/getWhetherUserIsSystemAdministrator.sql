@@ -1,0 +1,3 @@
+SELECT system_administrator_netId
+FROM static_system_administrators_info
+where system_administrator_netId=:system_administrator_netId;

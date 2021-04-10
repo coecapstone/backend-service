@@ -25,6 +25,21 @@ CREATE TABLE `static_approvers_info` (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+DROP TABLE IF EXISTS `static_fiscal_staffs_info`;
+CREATE TABLE `static_fiscal_staffs_info` (
+    `id` int(50) unsigned NOT NULL AUTO_INCREMENT,
+    `fiscal_staff_netId` varchar(50),
+    `subunit_id` int(50),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+DROP TABLE IF EXISTS `static_system_administrators_info`;
+CREATE TABLE `static_system_administrators_info` (
+    `system_administrator_netId` varchar(50),
+    PRIMARY KEY (`system_administrator_netId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
 DROP TABLE IF EXISTS `static_budget_info`;
 CREATE TABLE `static_budget_info` (
     `id` int(100) unsigned NOT NULL AUTO_INCREMENT,
