@@ -45,6 +45,21 @@ public class StaticController {
         return staticService.getUnitsData();
     }
 
+
+    @ApiOperation(
+            value = "Get all system administrators",
+            notes = "Get all system administrators",
+            tags = "Static",
+            httpMethod = "GET",
+            produces = APPLICATION_JSON
+    )
+    @RequestMapping(value = "/api/getAllSystemAdministrators", method = RequestMethod.GET, produces = APPLICATION_JSON)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public final List<String> getAllSystemAdministrators() throws Exception {
+        return staticService.getAllSystemAdministrators();
+    }
+
     @ApiOperation(
             value = "Get subunit list given unit",
             notes = "Get all the subunits",
@@ -131,5 +146,43 @@ public class StaticController {
                     required = true)
             @PathVariable("unit") String unit) {
         staticService.removeUnitName(unit);
+    }
+
+    @ApiOperation(
+            value = "Add NetID to the system administrator table",
+            notes = "Add NetID to the system administrator table",
+            tags = "Static",
+            httpMethod = "POST",
+            produces = APPLICATION_JSON
+    )
+    @RequestMapping(value = "/api/appendSystemAdministrator/{systemAdministratorNetID}", method = RequestMethod.POST, produces = APPLICATION_JSON)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public final void appendSystemAdministrator(
+            @ApiParam(name = "systemAdministratorNetID",
+                    value = "systemAdministratorNetID",
+                    example = "yangx38",
+                    required = true)
+            @PathVariable("systemAdministratorNetID") String systemAdministratorNetID) {
+        staticService.appendSystemAdministrator(systemAdministratorNetID);
+    }
+
+    @ApiOperation(
+            value = "Remove NetID to the system administrator table",
+            notes = "Remove NetID to the system administrator table",
+            tags = "Static",
+            httpMethod = "POST",
+            produces = APPLICATION_JSON
+    )
+    @RequestMapping(value = "/api/removeSystemAdministrator/{systemAdministratorNetID}", method = RequestMethod.POST, produces = APPLICATION_JSON)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public final void removeSystemAdministrator(
+            @ApiParam(name = "systemAdministratorNetID",
+                    value = "systemAdministratorNetID",
+                    example = "yangx38",
+                    required = true)
+            @PathVariable("systemAdministratorNetID") String systemAdministratorNetID) {
+        staticService.removeSystemAdministrator(systemAdministratorNetID);
     }
 }
