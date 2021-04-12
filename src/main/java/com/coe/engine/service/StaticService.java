@@ -41,6 +41,10 @@ public class StaticService {
 
     public void removeUnitName(String unit) { staticRepo.removeUnitName(unit); }
 
+    public void appendSubunitName(String unit, String subunit) { staticRepo.appendSubunitName(unit, subunit); }
+
+    public void removeSubunitName(String unit, String subunit) { staticRepo.removeSubunitName(unit, subunit); }
+
     public void appendSystemAdministrator(String netID) { staticRepo.appendSystemAdministrator(netID); }
 
     public void removeSystemAdministrator(String netID) { staticRepo.removeSystemAdministrator(netID); }
