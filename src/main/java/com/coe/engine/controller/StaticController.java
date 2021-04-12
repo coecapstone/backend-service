@@ -149,6 +149,54 @@ public class StaticController {
     }
 
     @ApiOperation(
+            value = "Add Unit Name to the unit table",
+            notes = "Add Unit Name to the unit table",
+            tags = "Static",
+            httpMethod = "POST",
+            produces = APPLICATION_JSON
+    )
+    @RequestMapping(value = "/api/appendSubunitName/{unit}/{subunit}", method = RequestMethod.POST, produces = APPLICATION_JSON)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public final void appendSubunitName(
+            @ApiParam(name = "unit",
+                    value = "unit",
+                    example = "ECE",
+                    required = true)
+            @PathVariable("unit") String unit,
+            @ApiParam(name = "subunit",
+                    value = "subunit",
+                    example = "Electrical & Computer Engineering Subunit",
+                    required = true)
+            @PathVariable("subunit") String subunit) {
+        staticService.appendSubunitName(unit, subunit);
+    }
+
+    @ApiOperation(
+            value = "Remove Unit Name to the unit table",
+            notes = "Remove Unit Name to the unit table",
+            tags = "Static",
+            httpMethod = "POST",
+            produces = APPLICATION_JSON
+    )
+    @RequestMapping(value = "/api/removeSubunitName/{unit}/{subunit}", method = RequestMethod.POST, produces = APPLICATION_JSON)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public final void removeSubunitName(
+            @ApiParam(name = "unit",
+                    value = "unit",
+                    example = "ECE",
+                    required = true)
+            @PathVariable("unit") String unit,
+            @ApiParam(name = "subunit",
+                    value = "subunit",
+                    example = "Electrical & Computer Engineering Subunit",
+                    required = true)
+            @PathVariable("subunit") String subunit) {
+        staticService.removeSubunitName(unit, subunit);
+    }
+
+    @ApiOperation(
             value = "Add NetID to the system administrator table",
             notes = "Add NetID to the system administrator table",
             tags = "Static",
