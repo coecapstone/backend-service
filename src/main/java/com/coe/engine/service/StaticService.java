@@ -40,4 +40,8 @@ public class StaticService {
     public void appendUnitName(String unit) {
         staticRepo.appendUnitName(unit);
     }
+
+    public void removeUnitName(String unit) {
+        staticRepo.removeUnitName(unit);
+    }
 }

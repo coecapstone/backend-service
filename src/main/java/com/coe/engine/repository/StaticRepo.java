@@ -59,4 +59,10 @@ public class StaticRepo {
         parameterMap.put("unit_name", unit_name);
         namedParameterJdbcTemplate.update(GeneridHelper.loadSql("sql/insertUnitName.sql"), parameterMap);
     }
+
+    public void removeUnitName(String unit_name) {
+        Map<String, String> parameterMap = new HashMap<>();
+        parameterMap.put("unit_name", unit_name);
+        namedParameterJdbcTemplate.update(GeneridHelper.loadSql("sql/removeUnitName.sql"), parameterMap);
+    }
 }

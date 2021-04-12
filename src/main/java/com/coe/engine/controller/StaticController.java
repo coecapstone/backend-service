@@ -96,8 +96,8 @@ public class StaticController {
     }
 
     @ApiOperation(
-            value = "Get subunit's budget list given unit",
-            notes = "Get all the subunits",
+            value = "Add Unit Name to the unit table",
+            notes = "Add Unit Name to the unit table",
             tags = "Static",
             httpMethod = "POST",
             produces = APPLICATION_JSON
@@ -112,5 +112,24 @@ public class StaticController {
                     required = true)
             @PathVariable("unit") String unit) {
         staticService.appendUnitName(unit);
+    }
+
+    @ApiOperation(
+            value = "Remove the unit from the unit table",
+            notes = "Remove the unit from the unit table",
+            tags = "Static",
+            httpMethod = "POST",
+            produces = APPLICATION_JSON
+    )
+    @RequestMapping(value = "/api/removeUnitName/{unit}", method = RequestMethod.POST, produces = APPLICATION_JSON)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public final void removeUnitName(
+            @ApiParam(name = "unit",
+                    value = "unit",
+                    example = "Electrical & Computer Engineering",
+                    required = true)
+            @PathVariable("unit") String unit) {
+        staticService.removeUnitName(unit);
     }
 }
