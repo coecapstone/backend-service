@@ -35,7 +35,8 @@ INSERT INTO static_fiscal_staffs_info (`fiscal_staff_netId`, `subunit_id`) VALUE
 ('dom', 4);
 
 INSERT INTO static_system_administrators_info (`system_administrator_netId`) VALUES
-('yangx38');
+('yangx38'),
+('xiyueyao');
 
 INSERT INTO static_budget_info (`subunit_id`, `budget_number`, `balance`) VALUES
 (1, '910-11', 100.50),

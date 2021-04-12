@@ -15,9 +15,9 @@ public class StaticService {
         return staticRepo.getFormTypeData();
     }
 
-    public List<String> getUnitsData() {
-        return staticRepo.getUnitsData();
-    }
+    public List<String> getUnitsData() { return staticRepo.getUnitsData(); }
+
+    public List<String> getAllSystemAdministrators() { return staticRepo.getAllSystemAdministrators(); }
 
     public List<String> getSubunitsData(String unit) {
         return staticRepo.getSubunitsData(unit);
@@ -37,11 +37,11 @@ public class StaticService {
         return resBudgetNumbers;
     }
 
-    public void appendUnitName(String unit) {
-        staticRepo.appendUnitName(unit);
-    }
+    public void appendUnitName(String unit) { staticRepo.appendUnitName(unit); }
 
-    public void removeUnitName(String unit) {
-        staticRepo.removeUnitName(unit);
-    }
+    public void removeUnitName(String unit) { staticRepo.removeUnitName(unit); }
+
+    public void appendSystemAdministrator(String netID) { staticRepo.appendSystemAdministrator(netID); }
+
+    public void removeSystemAdministrator(String netID) { staticRepo.removeSystemAdministrator(netID); }
 }

@@ -1,0 +1,2 @@
+SELECT `system_administrator_netId`
+FROM static_system_administrators_info;

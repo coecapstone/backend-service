@@ -4,6 +4,7 @@ import com.coe.engine.mapper.BudgetNumberMapper;
 import com.coe.engine.mapper.FormMapper;
 import com.coe.engine.mapper.SubunitIdMapper;
 import com.coe.engine.mapper.SubunitMapper;
+import com.coe.engine.mapper.SystemAdministratorMapper;
 import com.coe.engine.mapper.UnitMapper;
 import com.coe.engine.model.DropdownDataModel;
 import com.coe.engine.util.GeneridHelper;
@@ -30,6 +31,12 @@ public class StaticRepo {
         MapSqlParameterSource pathtoInfo = new MapSqlParameterSource();
         return namedParameterJdbcTemplate.query(GeneridHelper.loadSql("sql/getUnitsData.sql"), pathtoInfo,
                 new UnitMapper());
+    }
+
+    public List<String> getAllSystemAdministrators() {
+        MapSqlParameterSource pathtoInfo = new MapSqlParameterSource();
+        return namedParameterJdbcTemplate.query(GeneridHelper.loadSql("sql/getAllSystemAdministrators.sql"), pathtoInfo,
+                new SystemAdministratorMapper());
     }
 
     public List<String> getSubunitsData(String unit_name) {
@@ -64,5 +71,17 @@ public class StaticRepo {
         Map<String, String> parameterMap = new HashMap<>();
         parameterMap.put("unit_name", unit_name);
         namedParameterJdbcTemplate.update(GeneridHelper.loadSql("sql/removeUnitName.sql"), parameterMap);
+    }
+
+    public void appendSystemAdministrator(String netID) {
+        Map<String, String> parameterMap = new HashMap<>();
+        parameterMap.put("system_administrator_netId", netID);
+        namedParameterJdbcTemplate.update(GeneridHelper.loadSql("sql/insertSystemAdministratorNetId.sql"), parameterMap);
+    }
+
+    public void removeSystemAdministrator(String netID) {
+        Map<String, String> parameterMap = new HashMap<>();
+        parameterMap.put("system_administrator_netId", netID);
+        namedParameterJdbcTemplate.update(GeneridHelper.loadSql("sql/removeSystemAdministrator.sql"), parameterMap);
     }
 }
