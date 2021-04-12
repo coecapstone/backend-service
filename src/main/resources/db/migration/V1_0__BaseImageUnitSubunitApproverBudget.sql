@@ -44,6 +44,7 @@ CREATE TABLE `static_budget_info` (
     `id` int(100) unsigned NOT NULL AUTO_INCREMENT,
     `subunit_id` int(50),
     `budget_number` varchar(50),
+    `budget_name` varchar(50),
     `balance` double(20, 2),
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

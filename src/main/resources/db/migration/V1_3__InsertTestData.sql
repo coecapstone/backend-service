@@ -45,12 +45,13 @@ INSERT INTO static_system_administrators_info (`system_administrator_netId`) VAL
 ('yangx38'),
 ('xiyueyao');
 
-INSERT INTO static_budget_info (`subunit_id`, `budget_number`, `balance`) VALUES
-(1, '910-11', 100.50),
-(1, '910-22', 200.00),
-(1, '910-33', 300.00),
-(1, '910-45', 400.80),
-(1, '910-590', 1000.80),
-(2, '910-11', 500.00),
-(3, '910-11', 600.50),
-(4, '910-11', 700.70);
+-- 往 Subunit 里面加 budget
+INSERT INTO static_budget_info (`subunit_id`, `budget_number`, `budget_name`, `balance`) VALUES
+(1, '910-11', '910-11 name', 100.50),
+(1, '910-22', '910-22 name', 200.00),
+(1, '910-33', '910-33 name', 300.00),
+(1, '910-45', '910-45 name', 400.80),
+(1, '910-590', '910-590 name', 1000.80),
+(2, '910-11', '910-11 name', 500.00),
+(3, '910-11', '910-11 name', 600.50),
+(4, '910-11', '910-11 name', 700.70);
