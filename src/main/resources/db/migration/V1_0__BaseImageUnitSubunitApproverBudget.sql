@@ -4,9 +4,8 @@ SET character_set_client = utf8mb4;
 
 DROP TABLE IF EXISTS `static_unit_info`;
 CREATE TABLE `static_unit_info` (
-    `unit_id` int(50) unsigned NOT NULL AUTO_INCREMENT,
     `unit_name` varchar(50),
-    PRIMARY KEY (`unit_id`)
+    PRIMARY KEY (`unit_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 DROP TABLE IF EXISTS `static_subunit_info`;

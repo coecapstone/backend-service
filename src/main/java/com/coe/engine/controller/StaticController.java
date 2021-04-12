@@ -65,7 +65,7 @@ public class StaticController {
     }
 
     @ApiOperation(
-            value = "Get subunit list given unit",
+            value = "Get subunit's budget list given unit",
             notes = "Get all the subunits",
             tags = "Static",
             httpMethod = "GET",
@@ -93,5 +93,24 @@ public class StaticController {
         }
         String subunitStr = subunitName.deleteCharAt(subunitName.length()-1).toString();
         return staticService.getBudgetOfSubunit(unit, subunitStr);
+    }
+
+    @ApiOperation(
+            value = "Get subunit's budget list given unit",
+            notes = "Get all the subunits",
+            tags = "Static",
+            httpMethod = "POST",
+            produces = APPLICATION_JSON
+    )
+    @RequestMapping(value = "/api/appendUnitName/{unit}", method = RequestMethod.POST, produces = APPLICATION_JSON)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public final void appendUnitName(
+            @ApiParam(name = "unit",
+                    value = "unit",
+                    example = "Electrical & Computer Engineering",
+                    required = true)
+            @PathVariable("unit") String unit) {
+        staticService.appendUnitName(unit);
     }
 }
