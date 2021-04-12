@@ -12,7 +12,9 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import java.sql.Types;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class StaticRepo {
     @Autowired
@@ -50,5 +52,17 @@ public class StaticRepo {
         pathtoInfo.addValue("subunit_id", subunit_id, Types.VARCHAR);
         return namedParameterJdbcTemplate.query(GeneridHelper.loadSql("sql/getBudgetNumbers.sql"), pathtoInfo,
                 new BudgetNumberMapper());
+    }
+
+    public void appendUnitName(String unit_name) {
+        Map<String, String> parameterMap = new HashMap<>();
+        parameterMap.put("unit_name", unit_name);
+        namedParameterJdbcTemplate.update(GeneridHelper.loadSql("sql/insertUnitName.sql"), parameterMap);
+    }
+
+    public void removeUnitName(String unit_name) {
+        Map<String, String> parameterMap = new HashMap<>();
+        parameterMap.put("unit_name", unit_name);
+        namedParameterJdbcTemplate.update(GeneridHelper.loadSql("sql/removeUnitName.sql"), parameterMap);
     }
 }
