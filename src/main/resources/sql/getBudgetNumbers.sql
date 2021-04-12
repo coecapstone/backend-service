@@ -1,3 +1,3 @@
 SELECT budget_number
-FROM static_budget_info
+FROM static_budget_assigned_to_subunit_info
 WHERE subunit_id=:subunit_id;
