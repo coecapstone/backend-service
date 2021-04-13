@@ -38,13 +38,19 @@ CREATE TABLE `static_system_administrators_info` (
     PRIMARY KEY (`system_administrator_netId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
 DROP TABLE IF EXISTS `static_budget_info`;
 CREATE TABLE `static_budget_info` (
+    `budget_number` varchar(50),
+    `budget_name` varchar(50),
+    PRIMARY KEY (`budget_number`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 往 Subunit 里面加 budget
+DROP TABLE IF EXISTS `static_budget_assigned_to_subunit_info`;
+CREATE TABLE `static_budget_assigned_to_subunit_info` (
     `id` int(100) unsigned NOT NULL AUTO_INCREMENT,
     `subunit_id` int(50),
     `budget_number` varchar(50),
-    `budget_name` varchar(50),
-    `balance` double(20, 2),
+--     `balance` double(20, 2),
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

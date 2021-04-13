@@ -1,11 +1,13 @@
 package com.coe.engine.repository;
 
 import com.coe.engine.mapper.BudgetNumberMapper;
+import com.coe.engine.mapper.BudgetTableMapper;
 import com.coe.engine.mapper.FormMapper;
 import com.coe.engine.mapper.SubunitIdMapper;
 import com.coe.engine.mapper.SubunitMapper;
 import com.coe.engine.mapper.SystemAdministratorMapper;
 import com.coe.engine.mapper.UnitMapper;
+import com.coe.engine.model.BudgetNumberTableModel;
 import com.coe.engine.model.DropdownDataModel;
 import com.coe.engine.util.GeneridHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,12 @@ public class StaticRepo {
         MapSqlParameterSource pathtoInfo = new MapSqlParameterSource();
         return namedParameterJdbcTemplate.query(GeneridHelper.loadSql("sql/getAllSystemAdministrators.sql"), pathtoInfo,
                 new SystemAdministratorMapper());
+    }
+
+    public List<BudgetNumberTableModel> getAllBudgetsList() {
+        MapSqlParameterSource pathtoInfo = new MapSqlParameterSource();
+        return namedParameterJdbcTemplate.query(GeneridHelper.loadSql("sql/getAllBudgetsList.sql"), pathtoInfo,
+                new BudgetTableMapper());
     }
 
     public List<String> getSubunitsData(String unit_name) {
