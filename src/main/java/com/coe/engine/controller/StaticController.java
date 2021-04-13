@@ -1,5 +1,6 @@
 package com.coe.engine.controller;
 
+import com.coe.engine.model.BudgetNumberTableModel;
 import com.coe.engine.model.DropdownDataModel;
 import com.coe.engine.service.StaticService;
 import io.swagger.annotations.ApiOperation;
@@ -45,7 +46,6 @@ public class StaticController {
         return staticService.getUnitsData();
     }
 
-
     @ApiOperation(
             value = "Get all system administrators",
             notes = "Get all system administrators",
@@ -58,6 +58,20 @@ public class StaticController {
     @ResponseBody
     public final List<String> getAllSystemAdministrators() throws Exception {
         return staticService.getAllSystemAdministrators();
+    }
+
+    @ApiOperation(
+            value = "Get all budget list",
+            notes = "Get all the budgets list",
+            tags = "Static",
+            httpMethod = "GET",
+            produces = APPLICATION_JSON
+    )
+    @RequestMapping(value = "/api/getAllBudgetsList", method = RequestMethod.GET, produces = APPLICATION_JSON)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public final List<BudgetNumberTableModel> getAllBudgetsList() throws Exception {
+        return staticService.getAllBudgetsList();
     }
 
     @ApiOperation(

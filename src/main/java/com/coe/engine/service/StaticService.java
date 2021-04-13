@@ -1,5 +1,6 @@
 package com.coe.engine.service;
 
+import com.coe.engine.model.BudgetNumberTableModel;
 import com.coe.engine.model.DropdownDataModel;
 import com.coe.engine.repository.StaticRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ public class StaticService {
     public List<String> getUnitsData() { return staticRepo.getUnitsData(); }
 
     public List<String> getAllSystemAdministrators() { return staticRepo.getAllSystemAdministrators(); }
+
+    public List<BudgetNumberTableModel> getAllBudgetsList() { return staticRepo.getAllBudgetsList(); }
 
     public List<String> getSubunitsData(String unit) {
         return staticRepo.getSubunitsData(unit);
