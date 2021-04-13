@@ -48,6 +48,18 @@ public class StaticService {
 
     public void removeSubunitName(String unit, String subunit) { staticRepo.removeSubunitName(unit, subunit); }
 
+    public void appendBudget(BudgetNumberTableModel budgetNumberTableModel) {
+        String budget_number = budgetNumberTableModel.getBudget_number();
+        String budget_name = budgetNumberTableModel.getBudget_name();
+        staticRepo.appendBudget(budget_number, budget_name);
+    }
+
+    public void removeBudget(BudgetNumberTableModel budgetNumberTableModel) {
+        String budget_number = budgetNumberTableModel.getBudget_number();
+        String budget_name = budgetNumberTableModel.getBudget_name();
+        staticRepo.removeBudget(budget_number, budget_name);
+    }
+
     public void appendSystemAdministrator(String netID) { staticRepo.appendSystemAdministrator(netID); }
 
     public void removeSystemAdministrator(String netID) { staticRepo.removeSystemAdministrator(netID); }
