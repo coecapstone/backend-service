@@ -2,6 +2,7 @@ package com.coe.engine.controller;
 
 import com.coe.engine.model.BudgetNumberTableModel;
 import com.coe.engine.model.DropdownDataModel;
+import com.coe.engine.model.FormReceivedTravelRequestModel;
 import com.coe.engine.service.StaticService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -63,7 +64,7 @@ public class StaticController {
     @ApiOperation(
             value = "Get all budget list",
             notes = "Get all the budgets list",
-            tags = "Static",
+            tags = "Budget",
             httpMethod = "GET",
             produces = APPLICATION_JSON
     )
@@ -96,7 +97,7 @@ public class StaticController {
     @ApiOperation(
             value = "Get subunit's budget list given unit",
             notes = "Get all the subunits",
-            tags = "Static",
+            tags = "Budget",
             httpMethod = "GET",
             produces = APPLICATION_JSON
     )
@@ -141,6 +142,34 @@ public class StaticController {
                     required = true)
             @PathVariable("unit") String unit) {
         staticService.appendUnitName(unit);
+    }
+
+    @ApiOperation(
+            value = "Append Budget to Budget Table",
+            notes = "append budget to budget table",
+            tags = "Budget",
+            httpMethod = "POST",
+            produces = APPLICATION_JSON
+    )
+    @RequestMapping(value = "/api/appendBudget", method = RequestMethod.POST, produces = APPLICATION_JSON)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public final void appendBudget(@RequestBody BudgetNumberTableModel budget) throws Exception {
+        staticService.appendBudget(budget);
+    }
+
+    @ApiOperation(
+            value = "Remove Budget to Budget Table",
+            notes = "Remove budget to budget table",
+            tags = "Budget",
+            httpMethod = "POST",
+            produces = APPLICATION_JSON
+    )
+    @RequestMapping(value = "/api/removeBudget", method = RequestMethod.POST, produces = APPLICATION_JSON)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public final void removeBudget(@RequestBody BudgetNumberTableModel budget) throws Exception {
+        staticService.removeBudget(budget);
     }
 
     @ApiOperation(

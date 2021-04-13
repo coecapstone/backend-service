@@ -95,6 +95,20 @@ public class StaticRepo {
         namedParameterJdbcTemplate.update(GeneridHelper.loadSql("sql/removeSubunitName.sql"), parameterMap);
     }
 
+    public void appendBudget(String budget_number, String budget_name) {
+        Map<String, String> parameterMap = new HashMap<>();
+        parameterMap.put("budget_number", budget_number);
+        parameterMap.put("budget_name", budget_name);
+        namedParameterJdbcTemplate.update(GeneridHelper.loadSql("sql/insertBudget.sql"), parameterMap);
+    }
+
+    public void removeBudget(String budget_number, String budget_name) {
+        Map<String, String> parameterMap = new HashMap<>();
+        parameterMap.put("budget_number", budget_number);
+        parameterMap.put("budget_name", budget_name);
+        namedParameterJdbcTemplate.update(GeneridHelper.loadSql("sql/removeBudget.sql"), parameterMap);
+    }
+
     public void appendSystemAdministrator(String netID) {
         Map<String, String> parameterMap = new HashMap<>();
         parameterMap.put("system_administrator_netId", netID);
